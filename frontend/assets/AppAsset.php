@@ -10,20 +10,17 @@
  */
 
 namespace frontend\assets;
+use skeeks\cms\base\AssetBundle;
 
 /**
  * Class AppAsset
  * @package frontend\assets
  */
-class AppAsset extends \skeeks\cms\base\AssetBundle
+class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'css/phone.css',
-        'css/app.css',
-
-    ];
+    public $css = [];
     public $js = [
         'smarty/js/scripts.js',
         'js/app.js',
@@ -32,8 +29,8 @@ class AppAsset extends \skeeks\cms\base\AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
-        '\skeeks\sx\assets\Custom',
-        '\skeeks\cms\assets\FancyboxAssets',
-        '\frontend\assets\BoomerangThemeAsset',
+        'skeeks\sx\assets\Custom',
+        'skeeks\cms\assets\FancyboxAssets',
+        'frontend\assets\SmartyThemeAsset',
     ];
 }

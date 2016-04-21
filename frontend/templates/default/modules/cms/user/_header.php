@@ -13,9 +13,12 @@ use skeeks\cms\base\widgets\ActiveFormAjaxSubmit as ActiveForm;
 use \skeeks\cms\helpers\UrlHelper;
 
 $this->title = $model->getDisplayName() . ' / ' . $title;
+
 \Yii::$app->breadcrumbs->createBase()->append([
     'name' => $model->displayName,
     'url'  => $model->getPageUrl()
+])->append([
+    'name' => $title
 ]);
 ?>
 
@@ -23,46 +26,45 @@ $this->title = $model->getDisplayName() . ' / ' . $title;
     'model' => $model
 ])?>
 
-<!--=== Content Part ===-->
-<div class="container content profile sx-profile">
-    <div class="row">
-        <div class="col-md-3 md-margin-bottom-40">
-            <? if ($model->image) : ?>
-                <img class="img-responsive profile-img margin-bottom-20" src="<?= \skeeks\cms\helpers\Image::getSrc($model->image->src); ?>" alt="">
-            <? else : ?>
-                <img class="img-responsive profile-img margin-bottom-20" src="<?= \skeeks\cms\helpers\Image::getSrc(); ?>" alt="">
-            <? endif; ?>
 
-            <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+<section style="padding-top: 40px;">
+    <!--=== Content Part ===-->
+    <div class="container content profile sx-profile">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4">
 
-                <li class="list-group-item <?= \Yii::$app->controller->action->id == 'view' ? "active": ""?>">
-                    <a href="<?= $model->getPageUrl('view')?>"><i class="glyphicon glyphicon-calendar"></i> Профиль</a>
-                </li>
 
-                <? if (!\Yii::$app->user->isGuest && \Yii::$app->user->identity->id == $model->id) : ?>
 
-                    <li class="list-group-item <?= \Yii::$app->controller->action->id == 'edit' ? "active": ""?>">
-                        <a href="<?= $model->getPageUrl('edit')?>"><i class="fa fa-cog"></i> Настройки</a>
+                <div class="side-nav"><ul class="list-group list-group-bordered list-group-noicon " id="sidebar-nav">
+
+                    <li class="list-group-item <?= \Yii::$app->controller->action->uniqueId == 'cms/user/view' ? "active": ""?>">
+                        <a href="<?= $model->getPageUrl('view')?>"><i class="fa fa-cog"></i> Профиль</a>
                     </li>
 
-                    <li class="list-group-item">
-                        <a href="<?= \skeeks\cms\helpers\UrlHelper::construct('cms/auth/logout')->setRef('/'); ?>" data-method="post"><i class="glyphicon glyphicon-off"></i> Выход</a>
-                    </li>
+                    <? if (!\Yii::$app->user->isGuest && \Yii::$app->user->identity->id == $model->id) : ?>
 
-                <? endif; ?>
+                        <li class="list-group-item <?= in_array(\Yii::$app->controller->action->uniqueId, ['shop/order/list', 'shop/order/view']) ? "active": ""?>">
+                            <a href="<?= \yii\helpers\Url::to(['/shop/order/list'])?>"><i class="fa fa-tasks"></i> Заказы</a>
+                        </li>
 
-            </ul>
+                        <!--<li class="list-group-item <?/*= \Yii::$app->controller->action->id == 'edit' ? "active": ""*/?>">
+                            <a href="<?/*= $model->getPageUrl('edit')*/?>"><i class="fa fa-cog"></i> Настройки</a>
+                        </li>-->
+
+                        <li class="list-group-item">
+                            <a href="<?= \skeeks\cms\helpers\UrlHelper::construct('cms/auth/logout')->setRef('/'); ?>" data-method="post"><i class="glyphicon glyphicon-off"></i> Выход</a>
+                        </li>
+
+                    <? endif; ?>
+
+                </ul></div >
 
 
-        </div>
+            </div>
 
 
-        <div class="col-md-9">
-            <div class="profile-body">
+            <div class="col-lg-9 col-md-9 col-sm-8">
+                <div class="profile-body">
 
-                <?/* \skeeks\cms\modules\admin\widgets\Pjax::begin([
-                    'linkSelector' => '.sx-profile a',
-                    'blockContainer' => '.profile-body'
-                ]); */?>
 
 

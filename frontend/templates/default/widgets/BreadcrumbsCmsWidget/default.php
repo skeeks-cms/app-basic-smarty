@@ -9,14 +9,15 @@
 /* @var $widget \skeeks\cms\cmsWidgets\breadcrumbs\BreadcrumbsCmsWidget */
 
 ?>
-<? if (\Yii::$app->breadcrumbs->parts) : ?>
+
+<? if (count(\Yii::$app->breadcrumbs->parts) > 1) : ?>
     <? $count = count(\Yii::$app->breadcrumbs->parts); ?>
     <? $counter = 0; ?>
     <ol class="breadcrumb pull-right">
         <? foreach (\Yii::$app->breadcrumbs->parts as $data) : ?>
             <? $counter ++; ?>
             <? if ($counter == $count): ?>
-                <li class="active"><?= $data['name']; ?></li>
+                <!--<li class="active"><?/*= $data['name']; */?></li>-->
             <? else : ?>
                 <li><a href="<?= $data['url']; ?>" title="<?= $data['name']; ?>"><?= $data['name']; ?></a></li>
             <? endif;?>

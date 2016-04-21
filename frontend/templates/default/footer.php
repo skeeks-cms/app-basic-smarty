@@ -8,104 +8,210 @@
 /* @var $this \yii\web\View */
 ?>
 <!-- FOOTER -->
-<footer class="footer">
+<footer id="footer">
 	<div class="container">
+
 		<div class="row">
-			<div class="col-md-3">
-				<div class="col">
-					<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
-					'namespace'         => 'text-footer-left',
-					'text'              => <<<HTML
-					<h4>Контакты</h4>
-				   <ul>
-						<li>г . Москва, ул . Вятская д. 27 стр . 4 (м. Савеловская)</li>
-						<li>Телефон: <a href="tel:8 (915) 337-08-90">8 (915) 337-08-90</a></li>
-						<li>Email: <a href="mailto:adria@mail.ru" title="adria@mail.ru">adria@mail.ru</a></li>
-						<li><hr /></li>
-						<li><a href="/contacts" title="Все контакты" class="btn btn-primary">Все контакты + карта</a></li>
+
+			<div class="col-md-4">
+				
+
+				<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+				'namespace'         => 'text-footer-left',
+				'text'              => <<<HTML
+
+
+				<h4 class="letter-spacing-1">Контакты</h4>
+
+				<!-- Contact Address -->
+				<address>
+					<ul class="list-unstyled">
+						<li class="footer-sprite address">
+							117105<br/>
+							Россия, Москва<br/>
+							Большая Садовая 5,<br/>
+							офис21<br/>
+						</li>
+						<li class="footer-sprite phone">
+							Телефон: <a href="tel:+74955437737">+7 (495) 543 77 37</a ><br/>
+								  <a href="tel:+74957242179">+7(495) 724 21 79</a >
+						</li>
+						<li class="footer-sprite email">
+							<a href="mailto:info@stevita.ru">info@stevita.ru</a>
+						</li>
 					</ul>
+				</address>
+				<!-- /Contact Address -->
 HTML
-	,
+,
+			]); ?>
+
+
+
+			</div>
+
+			
+
+			<div class="col-md-4">
+
+				<?= \skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
+					'namespace'      => 'menu-footer-2',
+					'viewFile'       => '@template/widgets/TreeMenuCmsWidget/menu-footer.php',
+					'label'          => 'Меню',
+					'level'          => '1',
 				]); ?>
 
-
-				 </div>
 			</div>
+			<div class="col-md-4">
 
-			<div class="col-md-3">
-				<div class="col">
-					<?= \skeeks\cms\cmsWidgets\contentElements\ContentElementsCmsWidget::widget([
-						'namespace'         => 'ContentElementsCmsWidget-footer',
-						'viewFile'          => '@template/widgets/ContentElementsCmsWidget/articles-footer',
-						'label'             => 'Новости и статьи',
-						'enabledCurrentTree'=> \skeeks\cms\components\Cms::BOOL_N,
-						'limit'             => 4,
-					]); ?>
+				<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+				'namespace'         => 'text-footer-social-2',
+				'text'              => <<<HTML
+				<!-- Footer Logo -->
+				<h4 class="letter-spacing-1">Мы в соцсетях</h4>
+
+
+
+				<!-- Social Icons -->
+				<div class="margin-top-20">
+					<a href="https://vk.com/stevita" class="social-icon social-icon-border social-vk pull-left" data-toggle="tooltip" data-placement="top" title="Vkontakte">
+
+						<i class="icon-vk"></i>
+						<i class="icon-vk"></i>
+					</a>
+
+					<a href="https://www.facebook.com/stevita.ru" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
+
+						<i class="icon-facebook"></i>
+						<i class="icon-facebook"></i>
+					</a>
+
+					<a href="http://ok.ru/stevita" class="social-icon social-icon-border social-ok pull-left" data-toggle="tooltip" data-placement="top" title="Odnoklassniki">
+						<i class="icon-ok"></i>
+						<i class="icon-ok"></i>
+					</a>
+
+
+
 
 				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="col col-social-icons">
-					<?= \skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
-						'namespace'      => 'menu-footer-2',
-						'viewFile'       => '@template/widgets/TreeMenuCmsWidget/menu-footer.php',
-						'label'          => 'Меню',
-						'level'          => '1',
-					]); ?>
-
-
-				</div>
-			</div>
-
-			 <div class="col-md-3">
-				<div class="col">
-					<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
-					'namespace'         => 'text-footer-bout-us',
-					'text'              => <<<HTML
-					<h4>О нас</h4>
-					<p class="no-margin">
-					Стоматологическая клиника «АДРИА» занимается медецинской деятельностью порядка 16 лет. За это время мы накопили колоссальный опыт, позволяющий нашим пациентам чувствовать себя спокойно и уверенно.
-					<br><br>
-					</p>
+				<!-- /Social Icons -->
 HTML
-	,
-				]); ?>
+,
+			]); ?>
+			</div>
+			<div class="col-xs-12 margin-top-40">
+
+				<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+				'namespace'         => 'text-footer-social',
+				'text'              => <<<HTML
+				<!-- Footer Logo -->
+				<h4 class="letter-spacing-1">Мы в соцсетях</h4>
+
+				
+
+				<!-- Social Icons -->
+				<div class="margin-top-20">
+					<a href="https://vk.com/stevita" class="social-icon social-icon-border social-vk pull-left" data-toggle="tooltip" data-placement="top" title="Vkontakte">
+
+						<i class="icon-vk"></i>
+						<i class="icon-vk"></i>
+					</a>
+
+					<a href="https://www.facebook.com/stevita.ru" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
+
+						<i class="icon-facebook"></i>
+						<i class="icon-facebook"></i>
+					</a>
+
+					<a href="http://ok.ru/stevita" class="social-icon social-icon-border social-ok pull-left" data-toggle="tooltip" data-placement="top" title="Odnoklassniki">
+						<i class="icon-ok"></i>
+						<i class="icon-ok"></i>
+					</a>
+
+
 
 
 				</div>
+				<!-- /Social Icons -->
+HTML
+,
+			]); ?>
+
 			</div>
+
 		</div>
 
-		<hr>
+	</div>
 
-		<div class="row">
-			<div class="col-lg-8 copyright">
-				2015 © Все права защищены, SkeekS CMS — система управления сайтом.
-			</div>
-			<div class="col-lg-4">
-				<div class=" pull-right">
-					<a href="http://skeeks.com" title="Разработка сайта — SkeekS" target="_blank">Разработка сайта — SkeekS</a> (<a href="http://cms.skeeks.com" title="Система управления сайтом yii2 cms — SkeekS" target="_blank">Yii2 CMS SkeekS</a>)
-				</div>
-			</div>
+	<div class="copyright">
+		<div class="container">
+			
+			<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+				'namespace'         => 'text-footer-rights',
+				'text'              => <<<HTML
+				&copy; Все права защищены, Digest Shop 2015
+HTML
+,
+			]); ?>
+
 		</div>
 	</div>
 </footer>
+<!-- /FOOTER -->
 
-
-<a id="fca_phone_div" href="#callback" class="fca-phone fca-green fca-show fca-static sx-fancybox" style="right: 50px; bottom: 100px; display: block;">
-	<div class="fca-ph-circle"></div>
-	<div class="fca-ph-circle-fill"></div>
-	<div class="fca-ph-img-circle"></div>
-</a>
 <div style="display: none;">
-	<div id="callback" style="width: 600px;">
-		<h2>Обратный звонок</h2>
-		<p>Оставьте ваш номер телефона и мы вам перезвоним.</p>
-		<?= \skeeks\modules\cms\form2\cmsWidgets\form2\FormWidget::widget([
-			'namespace' => 'FormWidget-all',
-			'form_code' => 'callback',
-			'viewFile' => 'whith-messages',
-		])?>
+	<div id="sx-feedback" style="min-width: 600px;">
+		<h2 style="margin-bottom: 15px;">Обратная связь</h2>
+		<p></p>
+			<?= \skeeks\modules\cms\form2\cmsWidgets\form2\FormWidget::widget([
+				'form_code' => 'feedback',
+				'namespace' => 'FormWidget-feedback-all',
+				'viewFile' => 'fancybox'
+			]); ?>
+	</div>
+
+
+	<div id="sx-pre-order" style="min-width: 600px;">
+		<? $this->registerJs(<<<JS
+(function(sx, $, _)
+{
+    sx.classes.PreOrder = sx.classes.Component.extend({
+
+        construct: function (name, opts)
+        {
+            opts = opts || {};
+            this.applyParentMethod(sx.classes.Component, 'construct', [opts]);
+			this.set('name', name);
+        },
+
+        _onDomReady: function()
+        {
+			var self = this;
+        	_.delay(function()
+        	{
+				$.fancybox($("#sx-pre-order"));
+				$(".field-relatedpropertiesmodel-product input").val(self.get('name'));
+        	}, 200);
+
+        }
+    });
+
+})(sx, sx.$, sx._);
+JS
+); ?><? $this->registerCss(<<<CSS
+#sx-pre-order .field-relatedpropertiesmodel-product
+{
+	display: none;
+}
+CSS
+); ?>
+		<h2 style="margin-bottom: 15px;">Предзаказ</h2>
+		<p>Этого товара нет в наличии, но вы можете сделать предзаказ.</p>
+			<?= \skeeks\modules\cms\form2\cmsWidgets\form2\FormWidget::widget([
+				'form_code' => 'preOrder',
+				'namespace' => 'FormWidget-preOrder',
+				'viewFile' => 'fancybox'
+			]); ?>
 	</div>
 </div>

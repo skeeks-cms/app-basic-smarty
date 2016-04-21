@@ -37,7 +37,7 @@ JS
 
         <? if (\Yii::$app->shop->shopFuser->isEmpty()) : ?>
             <!-- EMPTY CART -->
-                <div class="panel panel-default">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <strong>Ваша корзина пуста!</strong><br />
                     В вашей корзине нет покупок.<br />
@@ -91,17 +91,29 @@ JS
                             <!-- cart item -->
                             <div class="item">
                                 <div class="cart_img pull-left width-100 padding-10 text-left">
-                                    <img src="<?= \skeeks\cms\helpers\Image::getSrc($shopBasket->product->cmsContentElement->image->src)?>" alt="" width="80" />
+                                    <img src="<?= \skeeks\cms\helpers\Image::getSrc($shopBasket->product->cmsContentElement->image->src)?>"  alt="<?=$shopBasket->product->cmsContentElement->name;?> title="<?=$shopBasket->product->cmsContentElement->name;?> width="80" />
                                 </div>
                                 <a href="<?= $shopBasket->product->cmsContentElement->url; ?>" class="product_name" data-pjax="0">
                                     <span><?= $shopBasket->product->cmsContentElement->name; ?></span>
+                                    <? if($shopBasket->product->measure_ratio != 1) : ?>
+                                        <small>Товар продается по: <?= $shopBasket->product->measure_ratio; ?> <?= $shopBasket->product->measure->symbol_rus; ?></small>
+                                    <? endif; ?>
                                     <!--<small>Color: Brown, Size: XL</small>-->
                                 </a>
                                 <a href="#" class="remove_item" data-toggle="tooltip" title="" onclick="sx.Shop.removeBasket('<?= $shopBasket->id; ?>'); return false;" data-original-title="Удалить позицию"><i class="fa fa-times"></i></a>
-                                <div class="total_price"><span><?= \Yii::$app->money->intlFormatter()->format($shopBasket->money); ?></span></div>
+                                <div class="total_price"><span><?= \Yii::$app->money->convertAndFormat($shopBasket->money->multiply($shopBasket->quantity)); ?></span></div>
                                 <div class="qty">
-                                    <input type="number" value="<?= round($shopBasket->quantity); ?>" name="qty" class="sx-basket-quantity" maxlength="3" max="999" min="1" data-basket_id="<?= $shopBasket->id; ?>"/>
-                                    &times; <?= \Yii::$app->money->intlFormatter()->format($shopBasket->productPrice->money); ?>
+                                    <input type="number" value="<?= round($shopBasket->quantity); ?>" name="qty" class="sx-basket-quantity" maxlength="4" max="9999" min="<?= $shopBasket->product->measure_ratio; ?>" step="<?= $shopBasket->product->measure_ratio; ?>" data-basket_id="<?= $shopBasket->id; ?>"/>
+                                    &times;
+
+                                    <? if ($shopBasket->moneyOriginal->getAmount() == $shopBasket->money->getAmount()) : ?>
+                                        <?= \Yii::$app->money->convertAndFormat($shopBasket->moneyOriginal); ?>
+                                    <? else : ?>
+                                        <span class="line-through nopadding-left"><?= \Yii::$app->money->convertAndFormat($shopBasket->moneyOriginal); ?></span>
+                                        <?= \Yii::$app->money->convertAndFormat($shopBasket->money); ?>
+                                    <? endif; ?>
+
+
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -126,58 +138,15 @@ JS
             <!-- RIGHT -->
             <div class="col-lg-3 col-sm-4">
 
-                <!-- TOGGLE -->
-                <div class="toggle-transparent toggle-bordered-full clearfix">
+                <? $url = \yii\helpers\Url::to(['/shop/cart/checkout']) ; ?>
+                <?= $this->render("_result", [
+                    'submit' => <<<HTML
+<a href="{$url}" class="btn btn-primary btn-lg btn-block size-15" data-pjax="0">
+    <i class="fa fa-mail-forward"></i> Оформить
+</a>
+HTML
 
-                    <div class="toggle nomargin-top">
-                        <label>Купон</label>
-
-                        <div class="toggle-content" style="display: block;">
-                            <p>Укажите код вашего купона.</p>
-
-                            <form action="#" method="post" class="nomargin">
-                                <input type="text" id="cart-code" name="cart-code" class="form-control text-center margin-bottom-10" placeholder="Код купона" required="required">
-                                <button class="btn btn-primary btn-block" type="submit">Получить скидку</button>
-                            </form>
-                        </div>
-                    </div>
-
-
-                </div>
-                <!-- /TOGGLE -->
-
-                <div class="toggle-transparent toggle-bordered-full clearfix">
-                    <div class="toggle active" style="display: block;">
-                        <div class="toggle-content" style="display: block;">
-
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyNoDiscount); ?></span>
-                                <strong class="pull-left">Итого:</strong>
-                            </span>
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyDiscount); ?></span>
-                                <span class="pull-left">Скидка:</span>
-                            </span>
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyDelivery); ?></span>
-                                <span class="pull-left">Доставка:</span>
-                            </span>
-
-                            <hr />
-
-                            <span class="clearfix">
-                                <span class="pull-right size-20"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->money); ?></span>
-                                <strong class="pull-left">ИТОГ:</strong>
-                            </span>
-
-                            <hr />
-
-                            <a href="<?= \yii\helpers\Url::to(['/shop/cart/checkout']); ?>" class="btn btn-primary btn-lg btn-block size-15" data-pjax="0">
-                                <i class="fa fa-mail-forward"></i> Оформить
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                ]); ?>
 
             </div>
         <? endif; ?>

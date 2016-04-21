@@ -12,18 +12,18 @@
     'title' => "Результаты поиска: " . \Yii::$app->cmsSearch->searchQuery
 ])*/?>
 
-<section style="padding: 40px 0;">
+<section>
     <div class="container sx-content">
         <div class="row">
             <div class="col-md-12">
 
                 <? \skeeks\cms\modules\admin\widgets\Pjax::begin(); ?>
 
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-12">
                             <form action="/search" method="get" data-pjax="true">
                                 <div class="input-group animated fadeInDown">
-                                    <input type="text" name="<?= \Yii::$app->cmsSearch->searchQueryParamName; ?>" class="form-control" placeholder="Поиск" value="<?= \Yii::$app->cmsSearch->searchQuery; ?>">
+                                    <input type="text" name="<?/*= \Yii::$app->cmsSearch->searchQueryParamName; */?>" class="form-control" placeholder="Поиск" value="<?/*= \Yii::$app->cmsSearch->searchQuery; */?>">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="button" onclick="$('.search-open form').submit(); return false;">Искать</button>
                                     </span>
@@ -31,15 +31,15 @@
                             </form>
                         </div>
                     </div>
-
+-->
                 <!--=== Content Part ===-->
                     <div class="row">
                         <div class="col-md-12">
-
                             <?= \skeeks\cms\cmsWidgets\contentElements\ContentElementsCmsWidget::widget([
                                 'namespace'                     => 'ContentElementsCmsWidget-search-result',
                                 'viewFile'                      => '@app/views/modules/cms/search/_widget',
                                 'enabledCurrentTree'            => \skeeks\cms\components\Cms::BOOL_N,
+                                'active'                        => "Y",
                                 'dataProviderCallback'           => function(\yii\data\ActiveDataProvider $dataProvider)
                                 {
                                     \Yii::$app->cmsSearch->buildElementsQuery($dataProvider->query);

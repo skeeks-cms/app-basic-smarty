@@ -26,7 +26,7 @@ JS
 
     <a href="#" id="sx-cart-small-open-btn">
 
-        <span class="badge badge-aqua btn-xs badge-corner sx-count-baskets"><?= \Yii::$app->shop->shopFuser->countShopBaskets ? \Yii::$app->shop->shopFuser->countShopBaskets : ""; ?></span>
+        <span class="badge badge-orange btn-xs badge-corner sx-count-baskets"><?= \Yii::$app->shop->shopFuser->countShopBaskets ? \Yii::$app->shop->shopFuser->countShopBaskets : ""; ?></span>
         <i class="fa fa-shopping-cart"></i>
     </a>
     <div class="quick-cart-box">
@@ -41,18 +41,18 @@ JS
             <div class="quick-cart-wrapper">
 
                 <? foreach(\Yii::$app->shop->shopFuser->shopBaskets as $shopBasket): ?>
-                    <a href="<?= $shopBasket->product->cmsContentElement->url; ?>"><!-- cart item -->
-                        <img src="<?= $shopBasket->product->cmsContentElement->image->src; ?>" width="45" height="45" alt="" />
+                    <a class="clearfix" href="<?= $shopBasket->product->cmsContentElement->url; ?>"><!-- cart item -->
+                        <img src="<?= $shopBasket->product->cmsContentElement->image->src; ?>" width="45"  alt="<?= $shopBasket->product->cmsContentElement->name; ?>" title="<?= $shopBasket->product->cmsContentElement->name; ?>" />
                         <h6><span><?= $shopBasket->quantity ?>x</span> <?= $shopBasket->product->cmsContentElement->name; ?></h6>
-                        <small><?= \Yii::$app->money->intlFormatter()->format($shopBasket->money); ?></small>
+                        <small><?= \Yii::$app->money->convertAndFormat($shopBasket->money); ?></small>
                     </a>
                 <? endforeach; ?>
             </div>
 
             <!-- quick cart footer -->
             <div class="quick-cart-footer clearfix">
-                <a href="<?= \yii\helpers\Url::to(['/shop/cart']); ?>" class="btn btn-primary btn-xs pull-right">В корзину</a>
-                <span class="pull-left"><strong>Итог:</strong> <?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->money); ?></span>
+                <a href="<?= \yii\helpers\Url::to(['/shop/cart']); ?>" class="btn btn-primary btn-xs pull-right">Оформить</a>
+                <span class="pull-left"><strong>Итог:</strong> <?= \Yii::$app->money->convertAndFormat(\Yii::$app->shop->shopFuser->money); ?></span>
             </div>
             <!-- /quick cart footer -->
         <? else : ?>

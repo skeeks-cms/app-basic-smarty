@@ -30,6 +30,11 @@ $this->title = $model->getDisplayName();
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#profile">Личные данные</a></li>
         <li><a data-toggle="tab" href="#passwordTab">Изменение пароля</a></li>
+
+        <? if (\Yii::$app->authClientCollection->clients) : ?>
+            <li><a data-toggle="tab" href="#sx-social">Социальные профили</a></li>
+        <? endif; ?>
+
     </ul>
     <div class="tab-content">
         <div id="profile" class="profile-edit tab-pane fade in active">
@@ -93,9 +98,42 @@ JS
         </div>
 
 
-        <div id="settings" class="profile-edit tab-pane fade">
 
-        </div>
+        <? if (\Yii::$app->authClientCollection->clients) : ?>
+            <div id="sx-social" class="profile-edit tab-pane fade">
+                <? \yii\bootstrap\Alert::begin([
+                    'options' => [
+                      'class' => 'alert-info',
+                    ],
+                ])?>
+                    Вы можете подключить профиль социальной сети, или стороннего приложения, и авторизовываться через него на нашем сайте.
+                <? \yii\bootstrap\Alert::end()?>
+
+
+                <? if (\Yii::$app->user->identity->cmsUserAuthClients) : ?>
+                    <h4>Уже подключены:</h4>
+                    <?=
+                        \yii\grid\GridView::widget([
+                            'dataProvider' => new \yii\data\ArrayDataProvider([
+                                'allModels' => \Yii::$app->user->identity->cmsUserAuthClients
+                            ]),
+                            'columns' =>
+                            [
+                                'provider'
+                            ]
+                        ])
+                    ?>
+                <? endif; ?>
+
+                <hr />
+                <h4>Подключить еще:</h4>
+                <?= yii\authclient\widgets\AuthChoice::widget([
+                     'baseAuthUrl'  => ['/cms/auth/client'],
+                     'popupMode'    => true,
+                ]) ?>
+            </div>
+        <? endif; ?>
+
     </div>
 </div>
 

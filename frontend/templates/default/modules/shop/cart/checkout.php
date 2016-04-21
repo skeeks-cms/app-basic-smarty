@@ -171,58 +171,15 @@ JS
             <!-- RIGHT -->
             <div class="col-lg-3 col-sm-4">
 
-                <!-- TOGGLE -->
-                <div class="toggle-transparent toggle-bordered-full clearfix">
+                <? $url = \yii\helpers\Url::to(['/shop/cart/payment']) ; ?>
+                <?= $this->render("_result", [
+                    'submit' => <<<HTML
+<a href="{$url}" class="btn btn-primary btn-lg btn-block size-15" data-pjax="0">
+    <i class="fa fa-mail-forward"></i> Оформить
+</a>
+HTML
 
-                    <div class="toggle nomargin-top">
-                        <label>Купон</label>
-
-                        <div class="toggle-content" style="display: block;">
-                            <p>Укажите код вашего купона.</p>
-
-                            <form action="#" method="post" class="nomargin">
-                                <input type="text" id="cart-code" name="cart-code" class="form-control text-center margin-bottom-10" placeholder="Код купона" required="required">
-                                <button class="btn btn-primary btn-block" type="submit">Получить скидку</button>
-                            </form>
-                        </div>
-                    </div>
-
-
-                </div>
-                <!-- /TOGGLE -->
-
-                <div class="toggle-transparent toggle-bordered-full clearfix">
-                    <div class="toggle active" style="display: block;">
-                        <div class="toggle-content" style="display: block;">
-
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyNoDiscount); ?></span>
-                                <strong class="pull-left">Итого:</strong>
-                            </span>
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyDiscount); ?></span>
-                                <span class="pull-left">Скидка:</span>
-                            </span>
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyDelivery); ?></span>
-                                <span class="pull-left">Доставка:</span>
-                            </span>
-
-                            <hr />
-
-                            <span class="clearfix">
-                                <span class="pull-right size-20"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->money); ?></span>
-                                <strong class="pull-left">ИТОГ:</strong>
-                            </span>
-
-                            <hr />
-
-                            <a href="<?= \yii\helpers\Url::to(['/shop/cart/payment']); ?>" class="btn btn-primary btn-lg btn-block size-15" data-pjax="0">
-                                <i class="fa fa-mail-forward"></i> Оформить
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                ]); ?>
 
             </div>
         <? endif; ?>

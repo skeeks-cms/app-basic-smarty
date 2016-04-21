@@ -88,7 +88,15 @@ JS
                             <? $form = \skeeks\cms\base\widgets\ActiveFormAjaxSubmit::begin([
                                 'action' => \yii\helpers\Url::to(['/shop/cart/create-order']),
                                 'enableAjaxValidation' => false,
-                                'id' => 'shop-create-order'
+                                'id' => 'shop-create-order',
+                                'afterValidateCallback' => new \yii\web\JsExpression(<<<JS
+    function(Jform, AjaxQuery)
+    {
+        new sx.classes.AjaxHandlerStandartRespose(AjaxQuery);
+        //AjaxQuery.bind('')
+    }
+JS
+)
                             ]); ?>
 
                                 <?= $form->field(\Yii::$app->shop->shopFuser, 'pay_system_id')->widget(
@@ -99,6 +107,18 @@ JS
                                         'allowDeselect' => false,
                                     ]
                                 ); ?>
+
+                                <? if ($deliveries = \skeeks\cms\shop\models\ShopDelivery::find()->active()->all()) : ?>
+                                    <?= $form->field(\Yii::$app->shop->shopFuser, 'delivery_id')->widget(
+                                        \skeeks\widget\chosen\Chosen::className(),
+                                        [
+                                            'items' => \yii\helpers\ArrayHelper::map($deliveries, 'id', 'name'),
+                                            'placeholder'   => 'Служба доставки',
+                                            'allowDeselect' => false,
+                                        ]
+                                    ); ?>
+                                <? endif; ?>
+
 
                                 <button class="btn btn-primary">Отправить</button>
 
@@ -118,12 +138,17 @@ JS
             <!-- RIGHT -->
             <div class="col-lg-3 col-sm-4">
 
-                <!-- TOGGLE -->
-                <div class="toggle-transparent toggle-bordered-full clearfix">
+                <? $url = \yii\helpers\Url::to(['/shop/cart/checkout']) ; ?>
+                <?= $this->render("_result", [
+                    'submit' => <<<HTML
+<a href="{$url}" class="btn btn-primary btn-lg btn-block size-15" data-pjax="0" onclick="new sx.classes.CreateOrder(); return false;">
+    <i class="fa fa-mail-forward"></i> Оформить
+</a>
+HTML
 
-                    <div class="toggle nomargin-top">
-                        <label>Купон</label>
+                ]); ?>
 
+                    <!--<div class="toggle nomargin-top">
                         <div class="toggle-content" style="display: block;">
                             <p>Укажите код вашего купона.</p>
 
@@ -132,37 +157,13 @@ JS
                                 <button class="btn btn-primary btn-block" type="submit">Получить скидку</button>
                             </form>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </div>
                 <!-- /TOGGLE -->
 
-                <div class="toggle-transparent toggle-bordered-full clearfix">
-                    <div class="toggle active" style="display: block;">
-                        <div class="toggle-content" style="display: block;">
 
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyNoDiscount); ?></span>
-                                <strong class="pull-left">Итого:</strong>
-                            </span>
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyDiscount); ?></span>
-                                <span class="pull-left">Скидка:</span>
-                            </span>
-                            <span class="clearfix">
-                                <span class="pull-right"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->moneyDelivery); ?></span>
-                                <span class="pull-left">Доставка:</span>
-                            </span>
-
-                            <hr />
-
-                            <span class="clearfix">
-                                <span class="pull-right size-20"><?= \Yii::$app->money->intlFormatter()->format(\Yii::$app->shop->shopFuser->money); ?></span>
-                                <strong class="pull-left">ИТОГ:</strong>
-                            </span>
-
-                            <hr />
 
 <?
 $this->registerJs(<<<JS
@@ -175,21 +176,10 @@ sx.classes.CreateOrder = sx.classes.Component.extend({
 JS
 )
 ?>
-                            <a href="#" class="btn btn-primary btn-lg btn-block size-15" onclick="<?= new \yii\web\JsExpression(<<<JS
-new sx.classes.CreateOrder(); return false;
-JS
-)?>">
-                                <i class="fa fa-mail-forward"></i> Оформить
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         <? endif; ?>
 
         <? \skeeks\cms\modules\admin\widgets\Pjax::end() ?>
 
-
-    </div>
 </section>

@@ -8,23 +8,23 @@
 /* @var $this \yii\web\View */
 ?>
 
-<ul class="top-links list-inline pull-right">
+<ul class="list-inline pull-right mb-0 user-menu">
 <? if (\Yii::$app->user->isGuest) : ?>
-    <li><a href="<?= \skeeks\cms\helpers\UrlHelper::construct('cms/auth/login')->setCurrentRef(); ?>"><i class="fa fa-user"></i> Авторизация / Регистрация</a></li>
+    <li><a href="<?= \skeeks\cms\helpers\UrlHelper::construct('cms/auth/login')->setCurrentRef(); ?>"><img src="/images/head-auth.gif"style="margin-top: -10px;"/> <span class="hidden-xs">Вход</span ></a></li>
 <? else : ?>
-    <li class="text-welcome hidden-xs">
-        Добро пожаловать, <strong><?= \Yii::$app->user->identity->displayName; ?></strong>
-    </li>
+   
     <li>
-        <a class="dropdown-toggle no-text-underline" data-toggle="dropdown" href="#"><i class="fa fa-user hidden-xs"></i> Мой аккаунт</a>
+        <a class="dropdown-toggle no-text-underline " data-toggle="dropdown" href="#">
+			<i class="fa fa-user"></i> <span class="hidden-xs"><?= \Yii::$app->user->identity->displayName; ?></span >
+		</a>
         <ul class="dropdown-menu pull-right">
-            <li><a tabindex="-1" href="#"><i class="fa fa-history"></i> ORDER HISTORY</a></li>
+
+            <li><a tabindex="-1" href="<?= \Yii::$app->user->identity->getPageUrl('view'); ?>"><i class="fa fa-cog"></i> Профиль</a></li>
             <li class="divider"></li>
-            <li><a tabindex="-1" href="#"><i class="fa fa-bookmark"></i> MY WISHLIST</a></li>
-            <li><a tabindex="-1" href="#"><i class="fa fa-edit"></i> MY REVIEWS</a></li>
-            <li><a tabindex="-1" href="<?= \Yii::$app->user->identity->getPageUrl('edit'); ?>"><i class="fa fa-cog"></i> Настройки</a></li>
+            <li><a tabindex="-1" href="<?=\yii\helpers\Url::to(['/shop/order/list']); ?>"><i class="fa fa-tasks"></i> История заказов</a></li>
             <li class="divider"></li>
-            <li><a href="<?= \skeeks\cms\helpers\UrlHelper::construct('cms/auth/logout')->setCurrentRef(); ?>" data-method="post"><span class="glyphicon glyphicon-off"></span> Выход</a></li>
+
+            <li><a href="<?= \skeeks\cms\helpers\UrlHelper::construct('cms/auth/logout')->setCurrentRef(); ?>" data-method="post"><i class="glyphicon glyphicon-off"></i> Выход</a></li>
         </ul>
     </li>
 <? endif; ?>

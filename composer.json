@@ -27,7 +27,7 @@
         "skeeks/cms-ssh-console": "*",
         "skeeks/cms-log-db-target": "*",
         "skeeks/cms-assets-auto-compress": "*",
-        "skeeks/yii2-template-boomerang": "*",
+        "skeeks/yii2-template-smarty": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*"
     },
@@ -55,6 +55,6 @@
     "config": {
         "process-timeout": 1800,
         "discard-changes": true,
-        "github-oauth": {"github.com":"6d5599154f19c2932ba93a0cfd4dd3e008a9139c"}
+        "github-oauth": {"github.com":"635599184f19c2932ba93a0cfd4dd3e008a9139c"}
     }
 }

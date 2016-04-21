@@ -2,7 +2,7 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (ÑêèêÑ)
+ * @copyright 2010 SkeekS (Ð¡ÐºÐ¸ÐºÐ¡)
  * @date 06.03.2015
  */
 /* @var $this \yii\web\View */
@@ -15,54 +15,108 @@ $catalogHelper = \common\helpers\CatalogTreeHelper::instance($model);
     'model' => $model
 ])?>
 
+<? if ($model->children) : ?>
+    <!-- Product page -->
+    <section class="padding-top-20 sx-catalog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-8 col-lg-push-3 col-md-push-3 col-sm-push-4">
+                    <div class="clearfix">
+                            <div class="cat-descr clearfix"><?= $model->description_full; ?></div >
 
-<!-- Product page -->
-<section>
-    <div class="container">
-        <div class="row">
+                            <?= \skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
+                                'namespace'         => 'TreeMenuCmsWidget-sub-catalog-1',
+                                'viewFile'          => '@template/widgets/TreeMenuCmsWidget/sub-catalog',
+                                'treePid'           => $model->id,
+                                'enabledRunCache'   => \skeeks\cms\components\Cms::BOOL_N,
+                            ]); ?>
+                    </div>
+                </div>
 
-            <div class="col-lg-9 col-md-9 col-sm-9 col-lg-push-3 col-md-push-3 col-sm-push-3">
+                <!-- LEFT -->
+                <div class="col-lg-3 col-md-3 col-sm-4 col-lg-pull-9 col-md-pull-9 col-sm-pull-8">
 
-                <div class="row">
-                    <?= $model->description_full; ?>
-
-                    <? if ($catalogHelper->viewType == \common\helpers\CatalogTreeHelper::VIEW_TREE) : ?>
+                    <!-- CATEGORIES -->
+                    <div class="side-nav margin-bottom-60">
                         <?= trim(\skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
-                            'namespace'         => 'TreeMenuCmsWidget-sub-catalog',
-                            'viewFile'          => '@template/widgets/TreeMenuCmsWidget/sub-catalog',
+                            'namespace'         => 'TreeMenuCmsWidget-leftmenu',
+                            'viewFile'          => '@template/widgets/TreeMenuCmsWidget/left-menu',
                             'treePid'           => $model->id,
                             'enabledRunCache'   => \skeeks\cms\components\Cms::BOOL_N,
+                            'label'             => 'ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³',
                         ])); ?>
-                    <? else : ?>
-                        <?= \skeeks\cms\cmsWidgets\contentElements\ContentElementsCmsWidget::widget([
-                            'namespace' => 'ContentElementsCmsWidget-second',
-                            'viewFile' 	=> '@app/views/widgets/ContentElementsCmsWidget/products',
-                        ]); ?>
-                    <? endif; ?>
+
+                    </div>
+                    <!-- /CATEGORIES -->
                 </div>
 
             </div>
-
-            <!-- LEFT -->
-            <div class="col-lg-3 col-md-3 col-sm-3 col-lg-pull-9 col-md-pull-9 col-sm-pull-9">
-
-                <!-- CATEGORIES -->
-                <div class="side-nav margin-bottom-60">
-
-
-                    <?= trim(\skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
-                        'namespace'         => 'TreeMenuCmsWidget-leftmenu',
-                        'viewFile'          => '@template/widgets/TreeMenuCmsWidget/left-menu',
-                        'treePid'           => $model->id,
-                        'enabledRunCache'   => \skeeks\cms\components\Cms::BOOL_N,
-                        'label'             => 'Êàòàëîã',
-                    ])); ?>
-
-                </div>
-                <!-- /CATEGORIES -->
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
+
+<? else : ?>
+
+    <? \skeeks\cms\modules\admin\widgets\Pjax::begin(); ?>
+
+    <?
+    $this->registerCss(<<<CSS
+.checkbox input[type=checkbox]
+{
+    left:auto;
+}
+CSS
+);
+    ?>
+
+
+
+        <!-- Product page -->
+        <section  class="padding-top-20 sx-catalog">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-9 col-md-9 col-sm-8 col-lg-push-3 col-md-push-3 col-sm-push-4">
+
+                        <div class="clearfix">
+                          
+
+                            <?= \skeeks\cms\cmsWidgets\contentElements\ContentElementsCmsWidget::widget([
+                                'namespace' => 'ContentElementsCmsWidget-second',
+                                'viewFile' 	=> '@app/views/widgets/ContentElementsCmsWidget/products',
+                            ]); ?>
+							<div class="cat-descr clearfix">  <?= $model->description_full; ?></div >
+
+                        </div>
+
+                    </div>
+
+                    <!-- LEFT -->
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-lg-pull-9 col-md-pull-9 col-sm-pull-8">
+
+                        <!-- CATEGORIES -->
+                        <div class="side-nav margin-bottom-60">
+
+
+                            <?= trim(\skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
+                                'namespace'         => 'TreeMenuCmsWidget-leftmenu',
+                                'viewFile'          => '@template/widgets/TreeMenuCmsWidget/left-menu',
+                                'treePid'           => $model->id,
+                                'enabledRunCache'   => \skeeks\cms\components\Cms::BOOL_N,
+                                'label'             => 'ÐšÐ°Ñ‚Ð°Ð»Ð¾Ð³',
+                            ])); ?>
+
+
+
+                        </div>
+                        <!-- /CATEGORIES -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    <? \skeeks\cms\modules\admin\widgets\Pjax::end(); ?>
+<? endif; ?>
+
+
 

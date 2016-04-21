@@ -11,13 +11,5 @@
 <?= $this->render('@template/include/breadcrumbs', [
     'model' => $model
 ])?>
-<!-- Product page -->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?= $model->description_full; ?>
-            </div>
-        </div>
-    </div>
-</section>
+
+<?= $model->description_full; ?>

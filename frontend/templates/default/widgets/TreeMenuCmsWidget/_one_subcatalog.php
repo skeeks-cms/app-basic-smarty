@@ -8,18 +8,18 @@
 /* @var $this   yii\web\View */
 /* @var $widget \skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget */
 /* @var $model   \skeeks\cms\models\Tree */
+
 ?>
-
-    <div class="col-sm-3 mix category-keyboard">
-
-        <div class="ec-box">
-            <div class="ec-box-header"><a href="<?= $model->url; ?>"><?= $model->name; ?></a></div>
-            <? if ($image = $model->image->src) : ?>
-                <a href="<?= $model->url; ?>"><img src="<?=$image;?>" alt="" style="width: 210px; min-height: 200px;"></a>
-                <div class="ec-box-footer center-block">
-                    <a href="<?= $model->url; ?>" class="btn btn-ar btn-success btn-sm center-block"> Подробнее</a>
-                </div>
-            <? endif; ?>
+<li class="col-md-3 col-sm-6 md-margin-bottom-30">
+    <div class="shop-item">
+        <div class="thumbnail catalog_list">
+            <a href="<?= $model->url; ?>" class="shop-item-image">
+                <img src="<?= \skeeks\cms\helpers\Image::getSrc($model->image->src); ?>" alt="<?= $model->name; ?>">
+            </a>
+            <!--<div class="easy-block-v1-badge rgba-purple"><?/*= $model->name; */?></div>-->
         </div>
-
+        <div class="shop-item-summary text-center">
+            <h2><a href="<?= $model->url; ?>"><?= $model->name; ?></a></h2>
+        </div>
     </div>
+</li>

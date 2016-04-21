@@ -20,9 +20,9 @@ $this->title = $title;
 $this->registerCss(<<<CSS
     div.auth-clients
     {
-          border-top: solid 1px #eee;
-          margin: 0;
-          padding: 0;
+          border-top: solid 1px rgba(0,0,0,0.1);
+          margin: 30px 0 0;
+          padding: 30px 0 0!important;
           text-align: center;
           padding-top: 10px;
     }
@@ -31,8 +31,12 @@ $this->registerCss(<<<CSS
     {
           margin-bottom: 0;
           padding-bottom: 0;
+		  padding-left: 0;
     }
 
+	.auth-clients .auth-client .auth-link{
+		width:auto;
+	}
 CSS
 );
 

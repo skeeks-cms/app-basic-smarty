@@ -21,11 +21,31 @@ use \skeeks\cms\helpers\UrlHelper;
         </div>
 
         <?php $form = ActiveForm::begin([
-            'validationUrl' => UrlHelper::construct('cms/auth/register')->setSystemParam(\skeeks\cms\helpers\RequestResponse::VALIDATION_AJAX_FORM_SYSTEM_NAME)->toString()
-        ]); ?>
-            <?= $form->field($model, 'username') ?>
+                        'action' => UrlHelper::construct('cms/auth/register-by-email')->toString(),
+                        'validationUrl' => UrlHelper::construct('cms/auth/register-by-email')->setSystemParam(\skeeks\cms\helpers\RequestResponse::VALIDATION_AJAX_FORM_SYSTEM_NAME)->toString(),
+                        'options' => [
+                            'class' => 'reg-page'
+                        ],
+                        'afterValidateCallback' => <<<JS
+            function(jForm, ajaxQuery)
+            {
+                var handler = new sx.classes.AjaxHandlerStandartRespose(ajaxQuery, {
+                    'blockerSelector' : '#' + jForm.attr('id'),
+                    'enableBlocker' : true,
+                });
+
+                handler.bind('success', function()
+                {
+                    _.delay(function()
+                    {
+                        $('#sx-login').click();
+                    }, 2000);
+                });
+            }
+JS
+
+                    ]); ?>
             <?= $form->field($model, 'email') ?>
-            <?= $form->field($model, 'password')->passwordInput() ?>
 
             <div class="form-group">
                 <?= Html::submitButton("<i class=\"glyphicon glyphicon-off\"></i> Зарегистрироваться", ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
@@ -33,6 +53,14 @@ use \skeeks\cms\helpers\UrlHelper;
 
         <?php ActiveForm::end(); ?>
         <?= Html::a('Авторизация', UrlHelper::constructCurrent()->setRoute('cms/auth/login')->toString()) ?>
+
+        <? if (\Yii::$app->authClientCollection->clients) : ?>
+            <hr />
+            <?= yii\authclient\widgets\AuthChoice::widget([
+                 'baseAuthUrl'  => ['/cms/auth/client'],
+                 'popupMode'    => true,
+            ]) ?>
+        <? endif; ?>
 
     </div>
 </div>

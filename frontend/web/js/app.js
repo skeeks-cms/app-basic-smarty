@@ -93,7 +93,9 @@
         {
             $(document).on('pjax:complete', function(e)
             {
-                new sx.classes.Location().href($(e.target));
+                console.log(e);
+                //var JqueryTarget = $(e.target);
+                //new sx.classes.Location().href(JqueryTarget);
             })
         },
 
@@ -105,15 +107,6 @@
      *
      */
     sx.classes.Location = sx.classes.Component.extend({
-
-        _init: function()
-        {},
-
-        _onDomReady: function()
-        {},
-
-        _onWindowReady: function()
-        {},
 
         href: function(id)
         {
@@ -145,6 +138,7 @@
         }
     });
 
+
     sx.classes.App = sx.classes.Component.extend({
 
         _init: function()
@@ -164,6 +158,10 @@
                 });
                 return false;
             });
+
+            new sx.classes.OwnCarousel({
+                'jsquerySelector' : '.owl-carousel'
+            });
         },
 
 
@@ -172,7 +170,7 @@
             //Глобальные настройки JGrowl
             $.jGrowl.defaults.closer        = false;
             $.jGrowl.defaults.closeTemplate = '×';
-            $.jGrowl.defaults.position      = 'top-right';
+            $.jGrowl.defaults.position      = 'top-center';
             $.jGrowl.defaults.life          = 5000;
         },
 

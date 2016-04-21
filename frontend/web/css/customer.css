@@ -1,0 +1,24 @@
+a.rollover1 {
+  background: url(https://stevita.ru/images/openstat1.png); 
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+  margin-left: 430px;
+  margin-bottom: -50px;
+  position: relative;
+  bottom: 27px;
+}
+a.rollover1:hover {
+  background: url(https://stevita.ru/images/openstat2.png); 
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+  margin-left: 430px;
+  margin-bottom: -50px;
+  position: relative;
+  bottom: 27px;
+}
+ * 
+ * Customer css code
+

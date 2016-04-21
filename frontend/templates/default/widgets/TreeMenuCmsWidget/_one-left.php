@@ -19,8 +19,8 @@ if (strpos(\Yii::$app->request->pathInfo, $model->dir) !== false)
 
 <li class="list-group-item <?= $activeClass; ?>">
     <? if ($hasChildrens) : ?>
-        <a href="<?= $model->url; ?>" title="<?= $model->name; ?>" class="dropdown-toggle">
-            <?= $model->name; ?>
+        <a href="<?= $model->url; ?>" title="<?= $model->name; ?>" class="dropdown-toggle" data-pjax="0">
+            <?= $model->name; ?> <i class="fa fa-angle-double-right"></i>
         </a>
 
         <ul>
@@ -29,11 +29,11 @@ if (strpos(\Yii::$app->request->pathInfo, $model->dir) !== false)
                        ->orderBy([$widget->orderBy => $widget->order])
                        ->all() as $childTree) : ?>
                 <li class="<?= strpos(\Yii::$app->request->pathInfo, $childTree->dir) !== false ? "active" : ""?>">
-                    <a href="<?= $childTree->url; ?>" title="<?= $childTree->name; ?>"><?= $childTree->name; ?></a>
+                    <a href="<?= $childTree->url; ?>" title="<?= $childTree->name; ?>" data-pjax="0"><?= $childTree->name; ?> <i class="fa fa-angle-double-right"></i></a>
                 </li>
         <? endforeach; ?>
             </ul>
     <? else: ?>
-        <a href="<?= $model->url; ?>" title="<?= $model->name; ?>"><?= $model->name; ?></a>
+        <a href="<?= $model->url; ?>" title="<?= $model->name; ?>" data-pjax="0"><?= $model->name; ?> <i class="fa fa-angle-double-right"></i></a>
     <? endif; ?>
 </li>

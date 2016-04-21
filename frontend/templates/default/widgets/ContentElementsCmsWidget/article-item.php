@@ -10,47 +10,35 @@
  */
 ?>
 
-<div class="row margin-bottom-20">
-
-        <? if ($model->image->src) : ?>
-    <div class="col-sm-4 sm-margin-bottom-20">
-            <img src="<?= \skeeks\cms\helpers\Image::getSrc($model->image->src); ?><?/*= \Yii::$app->imaging->getImagingUrl($model->getMainImageSrc(),
-            new \skeeks\cms\components\imaging\filters\Thumbnail([
-                'w'    => 409,
-                'h'    => 258,
-            ])
-        ) */?>" title="<?= $model->name; ?>" alt="<?= $model->name; ?>" class="img-responsive" />
-    </div>
-    <div class="col-sm-8 news-v3">
-        <? else :?>
-        <div class="col-sm-12 news-v3">
-        <? endif; ?>
 
 
+    <div class="blog-post-item row">
 
-        <div class="news-v3-in-sm no-padding">
-            <h2>
-                <a href="<?= $model->url; ?>" title="<?= $model->name; ?>"><?= $model->name; ?></a>
-            </h2>
+        <!-- IMAGE -->
+			<div class="col-xs-12 col-sm-4"><img src="<?= \skeeks\cms\helpers\Image::getSrc($model->image->src); ?><? /*= \Yii::$app->imaging->getImagingUrl($model->getMainImageSrc(),
+	new \skeeks\cms\components\imaging\filters\Thumbnail([
+	'w'    => 409,
+	'h'    => 258,
+	])
+	) */ ?>" alt="<?= $model->name; ?>" title="<?= $model->name; ?>" class="img-responsive thumbnail"/>
+			</div>
 
-            <!--<ul class="list-inline posted-info">
-                <?/* if ($model->createdBy) : */?>
-                    <li>Добавил: <a href="<?/*= $model->createdBy->getPageUrl(); */?>" title="<?/*= $model->createdBy->name; */?>"><?/*= $model->createdBy->name; */?></a></li>
-                <?/* endif; */?>
-                <?/* if ($model->cmsTree) : */?>
-                    <li>Категория: <a href="<?/*= $model->cmsTree->url; */?>" title="<?/*= $model->cmsTree->name; */?>"><?/*= $model->cmsTree->name; */?></a></li>
-                <?/* endif; */?>
-                <li>Время публикации: <?/*= \Yii::$app->formatter->asDate($model->published_at, 'full')*/?></li>
-                <?/* if ($testValue = $model->relatedPropertiesModel->getAttribute('test')) : */?>
-                    <li><?/*= $model->relatedPropertiesModel->getAttributeLabel('test'); */?>: <?/*= $testValue; */?></li>
-                <?/* endif; */?>
-            </ul>-->
+			<div class="col-xs-12 col-sm-8">				
+				<h2 ><a class="cl-green" href="<?= $model->url; ?>" title="<?= $model->name; ?>"><?= $model->name; ?></a></h2>
+				<ul class="blog-post-info list-inline margin-bottom-20">
+					<li>
+						<a href="#">
+							<i class="fa fa-calendar"></i>
+							<span class=""><?= \Yii::$app->formatter->asDate($model->published_at, 'full')?></span>
+						</a>
+					</li>
+				</ul>
 
-            <div class="news-v3-in-sm-p" ><?= $model->description_short; ?></div>
-            <p><a href="<?= $model->url; ?>" data-pjax="0" class="btn btn-color">Подробнее</a></p>
+				<p class=" margin-bottom-20"><?= $model->description_short; ?></p>
 
-        </div>
-    </div>
-</div>
-
-<div class="clearfix margin-bottom-20"><hr></div>
+				<a href="<?= $model->url; ?>" data-pjax="0" class="btn btn-bordered cl-orange">
+					<i class="fa fa-arrow-right"></i>
+					<span>Подробнее</span>
+				</a>
+			</div >    
+	</div>

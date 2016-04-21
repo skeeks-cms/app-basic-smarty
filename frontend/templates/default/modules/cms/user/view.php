@@ -15,105 +15,132 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 /* @var $personal bool */
+$this->registerCss(<<<CSS
+.field-user-image_id, .field-user-city, .field-user-info, .field-user-address
+{
+    display: none;
+}
+CSS
+);
 
 $this->title = $model->getDisplayName();
-\Yii::$app->breadcrumbs->createBase()->append($this->title);
-
-/*\Yii::$app->response->redirect($model->getPageUrl('conference'));*/
 ?>
 
-<?= $this->render('_header', [
+<?= \Yii::$app->view->render('_header', [
     'model'     => $model,
     'personal'  => $personal,
-    'title'     => 'Профиль',
+    'title'     => 'Управление настройками',
 ]); ?>
 
 
+<div class="tab-v1">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#profile">Личные данные</a></li>
+        <li><a data-toggle="tab" href="#passwordTab">Изменение пароля</a></li>
 
-    <div class="profile-bio">
-        <div class="row">
-            <div class="col-md-5">
-                <? if ($model->image) : ?>
-                    <img class="img-responsive md-margin-bottom-10" src="<?= \skeeks\cms\helpers\Image::getSrc($model->image->src); ?>" alt="">
-                <? else : ?>
-                    <img class="img-responsive md-margin-bottom-10" src="<?= \skeeks\cms\helpers\Image::getSrc(); ?>" alt="">
+        <? if (\Yii::$app->authClientCollection->clients) : ?>
+            <li><a data-toggle="tab" href="#sx-social">Социальные профили</a></li>
+        <? endif; ?>
+
+    </ul>
+    <div class="tab-content">
+        <div id="profile" class="profile-edit tab-pane fade in active">
+
+            <? $modelForm = $model; ?>
+            <? $form = \skeeks\cms\base\widgets\ActiveFormAjaxSubmit::begin([
+                'validationUrl' => \skeeks\cms\helpers\UrlHelper::construct('cms/user/edit-info', ['username' => $model->username])->setSystemParam(\skeeks\cms\helpers\RequestResponse::VALIDATION_AJAX_FORM_SYSTEM_NAME)->toString(),
+                'action'        => \skeeks\cms\helpers\UrlHelper::construct('cms/user/edit-info', ['username' => $model->username])->toString(),
+
+                'afterValidateCallback' => new \yii\web\JsExpression(<<<JS
+    function(jForm, ajax)
+    {
+        var handler = new sx.classes.AjaxHandlerStandartRespose(ajax, {
+            'enableBlocker' : true,
+            'blockerSelector' : '#' + jForm.attr('id')
+        });
+
+        handler.bind('success', function(e, response)
+        {});
+    }
+JS
+)
+            ]); ?>
+
+                <?= $form->field($model, 'image_id')->widget(
+                    \skeeks\cms\widgets\formInputs\StorageImage::className()
+                ) ?>
+
+                <?= $form->field($model, 'username')->textInput(['maxlength' => 12])->hint('Уникальное имя пользователя. Используется для авторизации, для формирования ссылки на личный кабинет.'); ?>
+                <?= $form->field($model, 'name')->textInput(); ?>
+
+
+
+                <?= $form->field($model, 'email')->textInput(); ?>
+                <?= $form->field($model, 'phone')->textInput(); ?>
+
+                <?= $form->field($model, 'gender')->radioList([
+                    'men' => 'Муж',
+                    'women' => 'Жен',
+                ]); ?>
+
+
+                <button class="btn btn-primary">Сохранить</button>
+            <? \skeeks\cms\base\widgets\ActiveFormAjaxSubmit::end(); ?>
+
+        </div>
+
+        <div id="passwordTab" class="profile-edit tab-pane fade">
+            <? $modelForm = new \skeeks\cms\models\forms\PasswordChangeForm(); ?>
+            <? $form = \skeeks\cms\base\widgets\ActiveFormAjaxSubmit::begin([
+                'validationUrl' => \skeeks\cms\helpers\UrlHelper::construct('cms/user/change-password', ['username' => $model->username])->setSystemParam(\skeeks\cms\helpers\RequestResponse::VALIDATION_AJAX_FORM_SYSTEM_NAME)->toString(),
+                'action'        => \skeeks\cms\helpers\UrlHelper::construct('cms/user/change-password', ['username' => $model->username])->toString()
+            ]); ?>
+                <?= $form->field($modelForm, 'new_password')->passwordInput() ?>
+                <?= $form->field($modelForm, 'new_password_confirm')->passwordInput() ?>
+                <button class="btn btn-primary">Изменить</button>
+            <? \skeeks\cms\base\widgets\ActiveFormAjaxSubmit::end(); ?>
+        </div>
+
+
+
+        <? if (\Yii::$app->authClientCollection->clients) : ?>
+            <div id="sx-social" class="profile-edit tab-pane fade">
+                <? \yii\bootstrap\Alert::begin([
+                    'options' => [
+                      'class' => 'alert-info',
+                    ],
+                ])?>
+                    Вы можете подключить профиль социальной сети, или стороннего приложения, и авторизовываться через него на нашем сайте.
+                <? \yii\bootstrap\Alert::end()?>
+
+
+                <? if (\Yii::$app->user->identity->cmsUserAuthClients) : ?>
+                    <h4>Уже подключены:</h4>
+                    <?=
+                        \yii\grid\GridView::widget([
+                            'dataProvider' => new \yii\data\ArrayDataProvider([
+                                'allModels' => \Yii::$app->user->identity->cmsUserAuthClients
+                            ]),
+                            'columns' =>
+                            [
+                                'provider'
+                            ]
+                        ])
+                    ?>
                 <? endif; ?>
 
-                <a class="btn-u btn-u-sm" href="#">Изменить</a>
+                <hr />
+                <h4>Подключить еще:</h4>
+                <?= yii\authclient\widgets\AuthChoice::widget([
+                     'baseAuthUrl'  => ['/cms/auth/client'],
+                     'popupMode'    => true,
+                ]) ?>
             </div>
-            <div class="col-md-7">
-                <h2><?= $model->getDisplayName(); ?></h2>
-                <!--<span><strong>Position:</strong> Web Designer</span>-->
-                <hr>
-                <p>Зарегистрирован: <?=\Yii::$app->formatter->asDate($model->created_at, 'full'); ?> (<?=\Yii::$app->formatter->asRelativeTime($model->created_at); ?>)</p>
-                <p>Личная информация.</p>
-            </div>
-        </div>
+        <? endif; ?>
+
     </div>
+</div>
 
-    <hr />
-
-    <div class="row">
-        <!--Social Icons v3-->
-        <div class="col-sm-6 sm-margin-bottom-30">
-            <div class="panel panel-profile">
-                <div class="panel-heading overflow-h">
-                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> Social Contacts <small>(option 1)</small></h2>
-                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
-                </div>
-                <div class="panel-body">
-                     <ul class="list-unstyled social-contacts-v2">
-                        <li><i class="rounded-x tw fa fa-twitter"></i> <a href="#">edward.rooster</a></li>
-                        <li><i class="rounded-x fb fa fa-facebook"></i> <a href="#">Edward Rooster</a></li>
-                        <li><i class="rounded-x sk fa fa-skype"></i> <a href="#">edwardRooster77</a></li>
-                        <li><i class="rounded-x gp fa fa-google-plus"></i> <a href="#">rooster77edward</a></li>
-                        <li><i class="rounded-x gm fa fa-envelope"></i> <a href="#">edward77@gmail.com</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--End Social Icons v3-->
-
-        <!--Skills-->
-        <div class="col-sm-6 sm-margin-bottom-30">
-            <div class="panel panel-profile">
-                <div class="panel-heading overflow-h">
-                    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> Skills</h2>
-                    <a href="#"><i class="fa fa-cog pull-right"></i></a>
-                </div>
-                <div class="panel-body">
-                    <small>HTML/CSS</small>
-                    <small>92%</small>
-                    <div class="progress progress-u progress-xxs">
-                        <div style="width: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
-                        </div>
-                    </div>
-
-                    <small>Photoshop</small>
-                    <small>77%</small>
-                    <div class="progress progress-u progress-xxs">
-                        <div style="width: 77%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="77" role="progressbar" class="progress-bar progress-bar-u">
-                        </div>
-                    </div>
-
-                    <small>PHP</small>
-                    <small>85%</small>
-                    <div class="progress progress-u progress-xxs">
-                        <div style="width: 85%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" role="progressbar" class="progress-bar progress-bar-u">
-                        </div>
-                    </div>
-
-                    <small>Javascript</small>
-                    <small>81%</small>
-                    <div class="progress progress-u progress-xxs">
-                        <div style="width: 81%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="81" role="progressbar" class="progress-bar progress-bar-u">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--End Skills-->
-    </div>
 <?= $this->render('_footer'); ?>
 
 

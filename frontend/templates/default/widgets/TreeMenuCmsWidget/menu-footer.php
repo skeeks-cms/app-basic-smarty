@@ -9,7 +9,9 @@
 /* @var $widget \skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget */
 /* @var $trees  \skeeks\cms\models\Tree[] */
 ?>
-<h4 ><?= $widget->label; ?></h4>
+
+
+<h4 class="letter-spacing-1"><?= $widget->label; ?></h4>
 <ul class="footer-links list-unstyled">
     <? if ($trees = $widget->activeQuery->all()) : ?>
         <? foreach ($trees as $tree) : ?>

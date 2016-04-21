@@ -17,7 +17,7 @@ if (strpos(\Yii::$app->request->pathInfo, $model->dir) !== false)
 ?>
 <li class="<?= $activeClass; ?> <? ($hasChildrens) ?' dropdown':''; ?>">
     <? if ($hasChildrens) : ?>
-        <a href="<?= $model->url; ?>" title="<?= $model->name; ?>" class="dropdown-toggle" data-hover="dropdown">
+        <a href="<?= $model->url; ?>" title="<?= $model->name; ?>" class="dropdownToggle" data-hover="dropdown">
             <?= $model->name; ?>
         </a>
 

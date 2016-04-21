@@ -17,10 +17,9 @@ use \skeeks\cms\helpers\UrlHelper;
 <div class="col-md-6 col-md-offset-3">
 
     <div class="box-static box-border-top padding-30">
-        <div class="box-title margin-bottom-30">
-            <h2 class="size-20">Авторизация</h2>
+		<div class="box-title margin-bottom-30">
+            <h2 class="size-20 margin-top-0">Авторизация</h2>
         </div>
-
         <?php $form = ActiveForm::begin([
             'validationUrl' => UrlHelper::construct('cms/auth/login')->setSystemParam(\skeeks\cms\helpers\RequestResponse::VALIDATION_AJAX_FORM_SYSTEM_NAME)->toString()
         ]); ?>
@@ -35,10 +34,14 @@ use \skeeks\cms\helpers\UrlHelper;
         <?php ActiveForm::end(); ?>
         <?= Html::a('Забыли пароль?', UrlHelper::constructCurrent()->setRoute('cms/auth/forget')->toString()) ?> |
         <?= Html::a('Регистрация', UrlHelper::constructCurrent()->setRoute('cms/auth/register')->toString()) ?>
-        <!--Или социальные сети
-        --><?/*= yii\authclient\widgets\AuthChoice::widget([
-             'baseAuthUrl' => ['site/auth']
-        ]) */?>
+
+        <? if (\Yii::$app->authClientCollection->clients) : ?>
+      
+            <?= yii\authclient\widgets\AuthChoice::widget([
+                 'baseAuthUrl'  => ['/cms/auth/client'],
+                 'popupMode'    => true,
+            ]) ?>
+        <? endif; ?>
     </div>
 </div>
 <?= $this->render("_footer"); ?>
