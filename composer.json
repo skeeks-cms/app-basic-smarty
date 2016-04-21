@@ -1,0 +1,60 @@
+{
+    "name": "skeeks/app-basic",
+    "description": "Приложение построенное на базе SkeekS CMS",
+    "keywords": ["framework", "cms", "skeeks", "sx", "app", "yii2"],
+    "homepage": "http://cms.skeeks.com",
+    "type": "project",
+    "license": "GPL-3.0+",
+    "support": {
+        "issues": "http://cms.skeeks.com",
+        "docs": "http://en.cms.skeeks.com/docs",
+        "source": "https://github.com/skeeks-cms/app-basic"
+    },
+    "authors": [
+        {
+            "name": "Semenov Alexander",
+            "email": "semenov@skeeks.com"
+        }
+    ],
+    "require": {
+        "skeeks/cms": "3.0.0-alpha2",
+        "skeeks/cms-module-form2": "*",
+        "skeeks/cms-agent": "*",
+        "skeeks/cms-mailer": "*",
+        "skeeks/cms-seo": "*",
+        "skeeks/cms-search": "*",
+        "skeeks/cms-db-dumper": "*",
+        "skeeks/cms-ssh-console": "*",
+        "skeeks/cms-log-db-target": "*",
+        "skeeks/cms-assets-auto-compress": "*",
+        "skeeks/yii2-template-boomerang": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*"
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable" : true,
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "skeeks\\cms\\console\\Composer::postInstall"
+        ],
+        "post-update-cmd": [
+            "skeeks\\cms\\console\\Composer::postUpdate",
+            "php yii cms/cache/flush-all",
+            "php yii cms/migrate --interactive=0",
+            "php yii rbac/init",
+            "php yii cmsAgent/init",
+            "php yii cms/cache/flush-all"
+        ]
+    },
+    "config": {
+        "process-timeout": 1800,
+        "discard-changes": true,
+        "github-oauth": {"github.com":"6d5599154f19c2932ba93a0cfd4dd3e008a9139c"}
+    }
+}
