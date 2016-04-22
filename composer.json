@@ -1,5 +1,5 @@
 {
-    "name": "skeeks/app-basic",
+    "name": "skeeks/app-basic-smarty",
     "description": "Приложение построенное на базе SkeekS CMS",
     "keywords": ["framework", "cms", "skeeks", "sx", "app", "yii2"],
     "homepage": "http://cms.skeeks.com",
@@ -8,7 +8,7 @@
     "support": {
         "issues": "http://cms.skeeks.com",
         "docs": "http://en.cms.skeeks.com/docs",
-        "source": "https://github.com/skeeks-cms/app-basic"
+        "source": "https://github.com/skeeks-cms/app-basic-smarty"
     },
     "authors": [
         {
