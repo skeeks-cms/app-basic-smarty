@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8934dd006ea5517af9dea9f569bef6b0",
-    "content-hash": "3c92f181aa19c75281aff420e7294eee",
+    "hash": "df0089fbc1e65ef8919b2eebc1fda618",
+    "content-hash": "54768e03010664076b4eaa71921754b6",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -443,16 +443,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "7.3.0",
+            "version": "7.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "9732331f19e638099e2342a2fbd1bf750dfcd6b2"
+                "reference": "848269d74ff1f2433dad747c0b0f96317205548d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/9732331f19e638099e2342a2fbd1bf750dfcd6b2",
-                "reference": "9732331f19e638099e2342a2fbd1bf750dfcd6b2",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/848269d74ff1f2433dad747c0b0f96317205548d",
+                "reference": "848269d74ff1f2433dad747c0b0f96317205548d",
                 "shasum": ""
             },
             "require": {
@@ -502,7 +502,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2016-04-08 11:10:48"
+            "time": "2016-04-21 10:06:43"
         },
         {
             "name": "ifsnop/mysqldump-php",
@@ -1210,16 +1210,16 @@
         },
         {
             "name": "skeeks/cms-agent",
-            "version": "1.0.0-alpha2",
+            "version": "1.0.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/skeeks-cms/cms-agent.git",
-                "reference": "283483382448f76f339568a17961cfd4548d2fd4"
+                "reference": "167b3851544a5f7fc54f64f3bf2c998892161de9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skeeks-cms/cms-agent/zipball/283483382448f76f339568a17961cfd4548d2fd4",
-                "reference": "283483382448f76f339568a17961cfd4548d2fd4",
+                "url": "https://api.github.com/repos/skeeks-cms/cms-agent/zipball/167b3851544a5f7fc54f64f3bf2c998892161de9",
+                "reference": "167b3851544a5f7fc54f64f3bf2c998892161de9",
                 "shasum": ""
             },
             "require": {
@@ -1250,7 +1250,7 @@
                 "skeeks",
                 "yii"
             ],
-            "time": "2016-04-21 07:23:47"
+            "time": "2016-04-21 18:04:14"
         },
         {
             "name": "skeeks/cms-assets-auto-compress",
@@ -1572,16 +1572,16 @@
         },
         {
             "name": "skeeks/cms-search",
-            "version": "1.0.0-alpha2",
+            "version": "1.0.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/skeeks-cms/cms-search.git",
-                "reference": "66c8d5ca26205beded902bd714208ac5894235c9"
+                "reference": "5376923c07e9397560c0136a737fd32f8148abba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skeeks-cms/cms-search/zipball/66c8d5ca26205beded902bd714208ac5894235c9",
-                "reference": "66c8d5ca26205beded902bd714208ac5894235c9",
+                "url": "https://api.github.com/repos/skeeks-cms/cms-search/zipball/5376923c07e9397560c0136a737fd32f8148abba",
+                "reference": "5376923c07e9397560c0136a737fd32f8148abba",
                 "shasum": ""
             },
             "require": {
@@ -1612,7 +1612,7 @@
                 "skeeks",
                 "yii"
             ],
-            "time": "2016-04-20 23:29:59"
+            "time": "2016-04-21 18:00:46"
         },
         {
             "name": "skeeks/cms-seo",
@@ -1936,17 +1936,17 @@
             "time": "2016-02-03 21:29:52"
         },
         {
-            "name": "skeeks/yii2-template-boomerang",
-            "version": "1.0.0",
+            "name": "skeeks/yii2-template-smarty",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/skeeks-com/yii2-template-boomerang.git",
-                "reference": "1266d20e5d587abcc0c72e7a74668a34f5f99cee"
+                "url": "https://github.com/skeeks-com/yii2-template-smarty.git",
+                "reference": "6a0082db313a1048c5e521eac4cc54b9ae6e4efa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skeeks-com/yii2-template-boomerang/zipball/1266d20e5d587abcc0c72e7a74668a34f5f99cee",
-                "reference": "1266d20e5d587abcc0c72e7a74668a34f5f99cee",
+                "url": "https://api.github.com/repos/skeeks-com/yii2-template-smarty/zipball/6a0082db313a1048c5e521eac4cc54b9ae6e4efa",
+                "reference": "6a0082db313a1048c5e521eac4cc54b9ae6e4efa",
                 "shasum": ""
             },
             "require": {
@@ -1955,7 +1955,7 @@
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
-                    "skeeks\\template\\boomerang\\": ""
+                    "skeeks\\template\\smarty\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1968,16 +1968,15 @@
                     "email": "semenov@skeeks.com"
                 }
             ],
-            "description": "Boomerang - MultiPurpose Template",
+            "description": "Template smarty bootstrap",
             "homepage": "http://www.skeeks.com/",
             "keywords": [
-                "CSS3",
-                "boomerang",
                 "bootstrap",
+                "smarty",
                 "template",
                 "yii2"
             ],
-            "time": "2015-10-24 19:16:32"
+            "time": "2016-01-30 15:02:26"
         },
         {
             "name": "skeeks/yii2-widget-chosen",
