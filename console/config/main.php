@@ -11,11 +11,8 @@
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'gii', 'cms'],
+    'bootstrap' => ['log', 'cms'],
     'controllerNamespace' => 'console\controllers',
-    'modules' => [
-        'gii' => 'yii\gii\Module',
-    ],
     'components' => [
         'log' => [
             'targets' => [
@@ -27,10 +24,5 @@ return [
         ],
     ],
 
-    'params' => (new \skeeks\cms\Config([
-        COMMON_CONFIG_DIR . "/params.php",
-        COMMON_ENV_CONFIG_DIR . "/params.php",
-        APP_CONFIG_DIR . "/params.php",
-        APP_ENV_CONFIG_DIR . "/params.php"
-    ]))->getResult(),
+    'params' => [],
 ];

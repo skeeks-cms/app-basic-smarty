@@ -13,7 +13,7 @@
 
 
 <!-- SLIDER -->
-<section class="padding-top-0 category-slider hidden-xs">
+<section class="padding-top-0 padding-bottom-0 category-slider hidden-xs">
 
 	<?/*= \skeeks\cms\cmsWidgets\treeMenu\TreeMenuCmsWidget::widget([
 		'namespace'      => 'home-slider-top',
@@ -26,6 +26,22 @@
 		'viewFile' 	=> '@app/views/widgets/ContentElementsCmsWidget/slides-revo',
 	]); ?>
 
+</section>
+
+<section class="callout-dark heading-title heading-arrow-bottom padding-20">
+        <div class="container">
+            <div class="text-center">
+                <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+				'namespace'         => 'home-text-center',
+				'text'              => <<<HTML
+				<h3 class="size-30">Тестовый сайт 2016</h3>
+                <p>Добро пожаловать уважаемые пользователи, это тестовый сайт построенный на базе SkeekS CMS</p>
+HTML
+,
+			]); ?>
+
+		</div>
+	</div>
 </section>
 
 

@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "skeeks/cms": "3.0.0-alpha2",
+        "skeeks/cms": "*",
         "skeeks/cms-module-form2": "*",
         "skeeks/cms-agent": "*",
         "skeeks/cms-mailer": "*",
@@ -27,9 +27,8 @@
         "skeeks/cms-ssh-console": "*",
         "skeeks/cms-log-db-target": "*",
         "skeeks/cms-assets-auto-compress": "*",
-        "skeeks/yii2-template-smarty": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*"
+        "skeeks/yii2-template-smarty-asset": "*",
+        "yiisoft/yii2-debug": "*"
     },
     "minimum-stability" : "dev",
     "prefer-stable" : true,

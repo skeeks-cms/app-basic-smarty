@@ -20,7 +20,9 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [];
+    public $css = [
+        'css/smarty-fix.css'
+    ];
     public $js = [
         'smarty/js/scripts.js',
         'js/app.js',

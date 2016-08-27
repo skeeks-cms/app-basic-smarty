@@ -1,0 +1,19 @@
+/*
+* This file is to customize the template smarty
+*/
+.breadCr {
+    line-height: 26px;
+}
+section.page-header .breadcrumb {
+    margin-top: auto;
+    z-index: 1000;
+}
+section.page-header .breadcrumb>li+li:before {
+	content: "/\00a0";
+}
+
+canvas {
+	width: auto  !important;
+	/* max-width: 800px; causes panorama gmap problems */
+	height: auto !important;
+}

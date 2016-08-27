@@ -14,7 +14,6 @@
 <!-- OWL SLIDER -->
 
 <? if ($widget->dataProvider->query->count()) : ?>
-
     <!-- REVOLUTION SLIDER -->
     <div id="slider" class="slider fullwidthbanner-container roundedcorners">
         <div class="fullwidthbanner" data-height="550" data-navigationStyle="">

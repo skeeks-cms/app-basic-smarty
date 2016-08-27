@@ -2,8 +2,8 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (—ÍËÍ—)
- * @date 06.03.2015
+ * @copyright 2010 SkeekS (–°–∫–∏–∫–°)
+ * @date 27.08.2016
  */
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
@@ -26,7 +26,7 @@ AppAsset::register($this);
 <meta name='yandex-verification' content='75b7e94b94f45134' />
 
 </head>
-<body class="smoothscroll enable-animation boxed">
+<body class="smoothscroll enable-animation">
     <?php $this->beginBody() ?>
 
 		<!-- wrapper -->

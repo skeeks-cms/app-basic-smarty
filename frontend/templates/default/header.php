@@ -21,36 +21,107 @@ if ($model->hasErrors())
     echo 'phone: ' . $model->phone;
 }*/
 ?>
+
+<!-- Top Bar -->
+<div id="topBar" class="dark">
+    <div class="container">
+
+        <?/*= $this->render('@app/views/include/header-auth'); */?>
+
+
+                <ul class="top-links list-inline pull-right">
+                    <li class="text-welcome hidden-xs">
+                        <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+                    'namespace'         => 'text-header-text-1',
+                    'text'              => <<<HTML
+                    Для связи с нами
+HTML
+,
+                ]); ?>
+                    </li>
+                    <li>
+                        <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+                    'namespace'         => 'text-header-text-phone',
+                    'text'              => <<<HTML
+                    <a class="dropdown-toggle no-text-underline" href="tel:+74957222873">
+                        <i class="fa fa-phone hidden-xs"></i> +7 (495) 722-28-73
+                    </a>
+HTML
+,
+                ]); ?>
+
+
+                    </li>
+                    <li>
+                        <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+                    'namespace'         => 'text-header-text-email',
+                    'text'              => <<<HTML
+                    <a class="dropdown-toggle no-text-underline" href="mailto:info@skeeks.com">
+                        <i class="fa fa-envelope hidden-xs"></i> info@skeeks.com
+                    </a>
+HTML
+,
+                ]); ?>
+
+                    </li>
+                </ul>
+
+
+
+        <!-- left -->
+
+<ul class="top-links list-inline">
+                <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
+                    'namespace'         => 'text-header-phone',
+                    'text'              => <<<HTML
+
+                    <li class="hidden-xs">
+                        <a href="/dostavka">Доставка и оплата</a>
+                    </li>
+                    <li class="hidden-xs">
+                        <a href="/contacts">Контакты</a>
+                    </li>
+
+HTML
+,
+                ]); ?>
+</ul>
+
+
+    </div>
+</div>
+<!-- /Top Bar -->
+
+
+
+<!--
+    AVAILABLE HEADER CLASSES
+
+    Default nav height: 96px
+    .header-md 		= 70px nav height
+    .header-sm 		= 60px nav height
+
+    .noborder 		= remove bottom border (only with transparent use)
+    .transparent	= transparent header
+    .translucent	= translucent header
+    .sticky			= sticky header
+    .static			= static header
+    .dark			= dark header
+    .bottom			= header on bottom
+
+    shadow-before-1 = shadow 1 header top
+    shadow-after-1 	= shadow 1 header bottom
+    shadow-before-2 = shadow 2 header top
+    shadow-after-2 	= shadow 2 header bottom
+    shadow-before-3 = shadow 3 header top
+    shadow-after-3 	= shadow 3 header bottom
+
+    .clearfix		= required for mobile menu, do not remove!
+
+    Example Usage:  class="clearfix sticky header-sm transparent noborder"
+-->
 <div id="header" class="sticky clearfix">
-	
-	<!-- Top Bar -->
-	<div id="topBar" class="bg-dark-green">
-		<div class="container">
-			
-			<div class="search header-search visible-md visible-lg  pull-left margin-right-40" >
-				<div class="search-box">
-					<form action="/search" method="get">
-						<div class="input-group">
-							<input type="text" name="<?= \Yii::$app->cmsSearch->searchQueryParamName; ?>"  placeholder="Поиск..."  value="<?= \Yii::$app->cmsSearch->searchQuery; ?>" class="form-control">
-							
-							<button class="header-search-btn" type="submit"><i class="fa fa-search"></i></button>
-							
-						</div>
-					</form>
-				</div> 
-			</div> 
-			<?= $this->render('@app/views/include/header-auth'); ?>
-			
-			<div class="text-left margin-right-15">
-				<span class="header-phone pr-10 nowrap"><a href="tel:+74957222873">+7 (495) 722-28-73</a></span>
-				<span class="header-mail nowrap"><a href="mailto:info@ferma-manihino.ru">info@ferma-manihino.ru</a></span>
-			</div>
-			<!-- left -->
-			
-			
-		</div>
-	</div>
-	<!-- /Top Bar -->
+
     <!-- TOP NAV -->
     <header id="topNav">
         <div class="container">
@@ -64,27 +135,24 @@ if ($model->hasErrors())
             <ul class="pull-right nav nav-pills nav-second-main">
 
                 <!-- SEARCH -->
-              <li class="search visible-sm visible-xs">
+                <li class="search">
                     <a href="javascript:;">
                         <i class="fa fa-search"></i>
                     </a>
                     <div class="search-box">
                         <form action="/search" method="get">
                             <div class="input-group">
-                                <input type="text" name="src" class="form-control" name="<?/*= \Yii::$app->cmsSearch->searchQueryParamName; */?>"  placeholder="Поиск..."  value="<?/*= \Yii::$app->cmsSearch->searchQuery; */?>" />
+                                <input type="text" class="form-control" name="<?= \Yii::$app->cmsSearch->searchQueryParamName; ?>"  placeholder="Поиск..."  value="<?= \Yii::$app->cmsSearch->searchQuery; ?>" />
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="submit">Найти</button>
                                 </span>
                             </div>
                         </form>
                     </div>
-                </li> 
+                </li>
                 <!-- /SEARCH -->
 
-               <!-- --><?/*= \skeeks\cms\shop\widgets\cart\ShopCartWidget::widget([
-                    'namespace' => 'ShopCartWidget-small-top',
-                    'viewFile' => '@app/views/widgets/ShopCartWidget/small-top'
-                ])*/?>
+
 
 
             </ul>
@@ -92,13 +160,18 @@ if ($model->hasErrors())
 
 
             <!-- Logo -->
-            <a class="logo pull-left" href="/">
-                <img src="<?= \frontend\assets\AppAsset::getAssetUrl('img/logo/logo.png'); ?>" alt="" style=""/>
+            <a class="logo pull-left" href="<?= \yii\helpers\Url::home(); ?>">
+                <img src="<?= \frontend\assets\AppAsset::getAssetUrl('img/logo.png'); ?>" alt="" />
+                SkeekS CMS
             </a>
-			
-			<div class="header-phone_in-fixed pull-right margin-right-10 margin-top-20 margin-left-10 nowrap"><a href="tel:+74957222873">+7 (495) 722-28-73</a></div>
-			
-            <div class="navbar-collapse  nav-main-collapse collapse submenu-light">
+
+            <!--
+                Top Nav
+
+                AVAILABLE CLASSES:
+                submenu-dark = dark sub menu
+            -->
+            <div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
                 <nav class="nav-main">
 
                     <!--
