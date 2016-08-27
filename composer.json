@@ -54,6 +54,6 @@
     },
     "config": {
         "process-timeout": 1800,
-        "discard-changes": true,
+        "discard-changes": true
     }
 }
