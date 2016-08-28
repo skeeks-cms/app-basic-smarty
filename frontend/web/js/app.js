@@ -180,3 +180,8 @@
 
     sx.App = new sx.classes.App();
 })(sx, sx.$, sx._);
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});

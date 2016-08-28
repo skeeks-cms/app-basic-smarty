@@ -5,3 +5,22 @@
 {
     font-size: 17px;
 }
+
+.logo
+{
+    font-size: 21px;
+}
+
+.fixed .logo
+{
+    font-size: 14px;
+}
+
+#footer>.copyright .container
+{
+    line-height: 60px;
+}
+
+#footer>.copyright {
+    padding: 0px;
+}

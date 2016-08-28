@@ -14,7 +14,7 @@
     <div class="shop-item">
         <div class="thumbnail catalog_list">
             <a href="<?= $model->url; ?>" class="shop-item-image">
-                <img src="<?= \skeeks\cms\helpers\Image::getSrc($model->image->src); ?>" alt="<?= $model->name; ?>">
+                <img src="<?= \skeeks\cms\helpers\Image::getSrc($model->image ? $model->image->src : null); ?>" alt="<?= $model->name; ?>">
             </a>
             <!--<div class="easy-block-v1-badge rgba-purple"><?/*= $model->name; */?></div>-->
         </div>

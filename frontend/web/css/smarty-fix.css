@@ -6,7 +6,6 @@
 }
 section.page-header .breadcrumb {
     margin-top: auto;
-    z-index: 1000;
 }
 section.page-header .breadcrumb>li+li:before {
 	content: "/\00a0";

@@ -10,7 +10,7 @@
 
 ?>
 
-<? if (count(\Yii::$app->breadcrumbs->parts) > 1) : ?>
+<? if (count(\Yii::$app->breadcrumbs->parts) > 2) : ?>
     <? $count = count(\Yii::$app->breadcrumbs->parts); ?>
     <? $counter = 0; ?>
     <ol class="breadcrumb pull-right">

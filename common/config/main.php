@@ -51,8 +51,8 @@ $config = [
         ],*/
 
 
-        'templateBoomerang' => [
-            'class' => 'common\components\boomerang\TemplateBoomerang',
+        'templateSmarty' => [
+            'class' => 'common\components\TemplateSmartySettings',
         ],
 
     ],

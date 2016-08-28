@@ -28,16 +28,14 @@
 					<ul class="list-unstyled">
 						<li class="footer-sprite address">
 							117105<br/>
-							Россия, Москва<br/>
-							Большая Садовая 5,<br/>
-							офис21<br/>
+							Россия, u. Москва, г. Зеленоград<br/>
+							2005-29<br/>
 						</li>
 						<li class="footer-sprite phone">
-							Телефон: <a href="tel:+74955437737">+7 (495) 543 77 37</a ><br/>
-								  <a href="tel:+74957242179">+7(495) 724 21 79</a >
+							Телефон: <a href="tel:+74955437737">+7 (495) 722-28-73</a >
 						</li>
 						<li class="footer-sprite email">
-							<a href="mailto:info@stevita.ru">info@stevita.ru</a>
+							<a href="mailto:info@skeeks.com">info@skeeks.com</a>
 						</li>
 					</ul>
 				</address>
@@ -74,25 +72,23 @@ HTML
 
 				<!-- Social Icons -->
 				<div class="margin-top-20">
-					<a href="https://vk.com/stevita" class="social-icon social-icon-border social-vk pull-left" data-toggle="tooltip" data-placement="top" title="Vkontakte">
+					<a href="https://vk.com/skeeks_com" target="_blank" class="social-icon social-icon-border social-vk pull-left" data-toggle="tooltip" data-placement="top" title="Vkontakte">
 
 						<i class="icon-vk"></i>
 						<i class="icon-vk"></i>
 					</a>
 
-					<a href="https://www.facebook.com/stevita.ru" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
+					<a href="https://www.facebook.com/skeekscom" target="_blank" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
 
 						<i class="icon-facebook"></i>
 						<i class="icon-facebook"></i>
 					</a>
 
-					<a href="http://ok.ru/stevita" class="social-icon social-icon-border social-ok pull-left" data-toggle="tooltip" data-placement="top" title="Odnoklassniki">
-						<i class="icon-ok"></i>
-						<i class="icon-ok"></i>
+					<a href="https://www.youtube.com/channel/UC26fcOT8EK0Rr80WSM44mEA" target="_blank" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Youtube">
+
+						<i class="icon-youtube"></i>
+						<i class="icon-youtube"></i>
 					</a>
-
-
-
 
 				</div>
 				<!-- /Social Icons -->
@@ -100,57 +96,22 @@ HTML
 ,
 			]); ?>
 			</div>
-			<div class="col-xs-12 margin-top-40">
-
-				<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
-				'namespace'         => 'text-footer-social',
-				'text'              => <<<HTML
-				<!-- Footer Logo -->
-				<h4 class="letter-spacing-1">Мы в соцсетях</h4>
-
-				
-
-				<!-- Social Icons -->
-				<div class="margin-top-20">
-					<a href="https://vk.com/stevita" class="social-icon social-icon-border social-vk pull-left" data-toggle="tooltip" data-placement="top" title="Vkontakte">
-
-						<i class="icon-vk"></i>
-						<i class="icon-vk"></i>
-					</a>
-
-					<a href="https://www.facebook.com/stevita.ru" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
-
-						<i class="icon-facebook"></i>
-						<i class="icon-facebook"></i>
-					</a>
-
-					<a href="http://ok.ru/stevita" class="social-icon social-icon-border social-ok pull-left" data-toggle="tooltip" data-placement="top" title="Odnoklassniki">
-						<i class="icon-ok"></i>
-						<i class="icon-ok"></i>
-					</a>
-
-
-
-
-				</div>
-				<!-- /Social Icons -->
-HTML
-,
-			]); ?>
-
-			</div>
-
 		</div>
 
 	</div>
 
 	<div class="copyright">
 		<div class="container">
-			
+
+			<ul class="pull-right nomargin list-inline mobile-block">
+				<li><a href="http://skeeks.com" data-toggle="tooltip" title="Зеленоградская Web-студия SkeekS"><img height="40" src="/img/skeeks/logo.png" /> Разработка сайта — SkeekS.com</a> (<a href="http://cms.skeeks.com" data-toggle="tooltip" title="Система управления сайтом SkeekS CMS (Yii2 cms)">SkeekS CMS Yii2</a>)</li>
+			</ul>
+
+
 			<?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
 				'namespace'         => 'text-footer-rights',
 				'text'              => <<<HTML
-				&copy; Все права защищены, Digest Shop 2015
+				&copy; Все права защищены, SkeekS CMS 2016
 HTML
 ,
 			]); ?>
@@ -160,58 +121,8 @@ HTML
 </footer>
 <!-- /FOOTER -->
 
-<div style="display: none;">
-	<div id="sx-feedback" style="min-width: 600px;">
-		<h2 style="margin-bottom: 15px;">Обратная связь</h2>
-		<p></p>
-			<?= \skeeks\modules\cms\form2\cmsWidgets\form2\FormWidget::widget([
-				'form_code' => 'feedback',
-				'namespace' => 'FormWidget-feedback-all',
-				'viewFile' => 'fancybox'
-			]); ?>
-	</div>
-
-
-	<div id="sx-pre-order" style="min-width: 600px;">
-		<? $this->registerJs(<<<JS
-(function(sx, $, _)
-{
-    sx.classes.PreOrder = sx.classes.Component.extend({
-
-        construct: function (name, opts)
-        {
-            opts = opts || {};
-            this.applyParentMethod(sx.classes.Component, 'construct', [opts]);
-			this.set('name', name);
-        },
-
-        _onDomReady: function()
-        {
-			var self = this;
-        	_.delay(function()
-        	{
-				$.fancybox($("#sx-pre-order"));
-				$(".field-relatedpropertiesmodel-product input").val(self.get('name'));
-        	}, 200);
-
-        }
-    });
-
-})(sx, sx.$, sx._);
-JS
-); ?><? $this->registerCss(<<<CSS
-#sx-pre-order .field-relatedpropertiesmodel-product
-{
-	display: none;
-}
-CSS
-); ?>
-		<h2 style="margin-bottom: 15px;">Предзаказ</h2>
-		<p>Этого товара нет в наличии, но вы можете сделать предзаказ.</p>
-			<?= \skeeks\modules\cms\form2\cmsWidgets\form2\FormWidget::widget([
-				'form_code' => 'preOrder',
-				'namespace' => 'FormWidget-preOrder',
-				'viewFile' => 'fancybox'
-			]); ?>
-	</div>
-</div>
+<a id="fca_phone_div" href="#sx-callback" data-toggle="modal" class="fca-phone fca-green fca-show fca-static" style="right: 0; bottom: 0; display: block;">
+	<div class="fca-ph-circle"></div>
+	<div class="fca-ph-circle-fill"></div>
+	<div class="fca-ph-img-circle"></div>
+</a>

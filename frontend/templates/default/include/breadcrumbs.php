@@ -6,12 +6,11 @@
  * @date 24.03.2015
  */
 
-if (!$title)
+if (!@$title)
 {
-
     if ($model)
     {
-        $title = $model->name?$model->name:$model->username;
+        $title = $model->name ? $model->name : $model->username;
     }
 }
 

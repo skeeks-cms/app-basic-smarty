@@ -10,6 +10,8 @@ use frontend\assets\AppAsset;
 /* @var $this \yii\web\View */
 /* @var $content string */
 AppAsset::register($this);
+\Yii::$app->templateSmarty->initTheme();
+
 \frontend\assets\FastAsset::register($this);
 \frontend\assets\OwnCarouselAsset::register($this);
 ?>
@@ -23,10 +25,8 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <link rel="icon" href="/favicon.ico?v=<?= @filemtime(\Yii::getAlias('@app/web/favicon.ico'));?>"  type="image/x-icon" />
     <?php $this->head() ?>
-<meta name='yandex-verification' content='75b7e94b94f45134' />
-
 </head>
-<body class="smoothscroll enable-animation">
+<body class="smoothscroll enable-animation <?= \Yii::$app->templateSmarty->getBodyCssClasses(); ?>">
     <?php $this->beginBody() ?>
 
 		<!-- wrapper -->
@@ -44,15 +44,16 @@ AppAsset::register($this);
 		<!-- SCROLL TO TOP -->
 		<a href="#" id="toTop"></a>
 
+        <? if (\Yii::$app->templateSmarty->isPreloader) : ?>
+            <!-- PRELOADER -->
+            <div id="preloader">
+                <div class="inner">
+                    <span class="loader"></span>
+                </div>
+            </div><!-- /PRELOADER -->
+        <? endif; ?>
 
-		<!-- PRELOADER -->
-		<div id="preloader">
-			<div class="inner">
-				<span class="loader"></span>
-			</div>
-		</div><!-- /PRELOADER -->
-
-
+        <?= $this->render('@app/views/modals'); ?>
 
     <?php $this->endBody() ?>
 </body>

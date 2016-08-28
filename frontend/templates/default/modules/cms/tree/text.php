@@ -2,7 +2,7 @@
 /**
  * @author Semenov Alexander <semenov@skeeks.com>
  * @link http://skeeks.com/
- * @copyright 2010 SkeekS (ÑêèêÑ)
+ * @copyright 2010 SkeekS (ï¿½ï¿½ï¿½ï¿½ï¿½)
  * @date 06.03.2015
  */
 /* @var $this \yii\web\View */
@@ -16,8 +16,9 @@
 <? if ($model->children) : ?>
 
 <? endif ; ?>
+<section class="padding-top-20 padding-bottom-20">
 <!--=== Content Part ===-->
-<div class="padding-top-30 padding-bottom-30"><div class="container content">
+<div class=""><div class="container content">
     <div class="row magazine-page">
         <div class="col-md-12 sx-content">
             <?= $model->description_full; ?>
@@ -36,13 +37,7 @@
                 //'enabledRunCache'   => \skeeks\cms\components\Cms::BOOL_N,
             ]); ?>
 
-            <?= \skeeks\cms\cmsWidgets\contentElements\ContentElementsCmsWidget::widget([
-                'namespace'         => 'ContentElementsCmsWidget-sub-recipes',
-                'viewFile'          => '@app/views/widgets/ContentElementsCmsWidget/recipes',
-                //'treePid'           => $model->id,
-                //'enabledRunCache'   => \skeeks\cms\components\Cms::BOOL_N,
-            ]); ?>
-
         </div>
     </div>
 </div></div >
+</section>

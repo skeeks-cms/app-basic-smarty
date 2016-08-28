@@ -43,7 +43,7 @@ HTML
                         <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
                     'namespace'         => 'text-header-text-phone',
                     'text'              => <<<HTML
-                    <a class="dropdown-toggle no-text-underline" href="tel:+74957222873">
+                    <a class="dropdown-toggle no-text-underline" href="tel:+74957222873"  data-toggle="tooltip" data-placement="bottom" title="Телефон для связи">
                         <i class="fa fa-phone hidden-xs"></i> +7 (495) 722-28-73
                     </a>
 HTML
@@ -56,7 +56,7 @@ HTML
                         <?= \skeeks\cms\cmsWidgets\text\TextCmsWidget::widget([
                     'namespace'         => 'text-header-text-email',
                     'text'              => <<<HTML
-                    <a class="dropdown-toggle no-text-underline" href="mailto:info@skeeks.com">
+                    <a class="dropdown-toggle no-text-underline" href="mailto:info@skeeks.com" data-toggle="tooltip" data-placement="bottom" title="Email для связи">
                         <i class="fa fa-envelope hidden-xs"></i> info@skeeks.com
                     </a>
 HTML
@@ -162,7 +162,7 @@ HTML
             <!-- Logo -->
             <a class="logo pull-left" href="<?= \yii\helpers\Url::home(); ?>">
                 <img src="<?= \frontend\assets\AppAsset::getAssetUrl('img/logo.png'); ?>" alt="" />
-                SkeekS CMS
+                Лого
             </a>
 
             <!--

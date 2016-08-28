@@ -10,11 +10,11 @@
  */
 
 namespace yii\web;
-use common\components\boomerang\TemplateBoomerang;
+use common\components\TemplateSmartySettings;
 
 
 /**
- * @property TemplateBoomerang                    $templateBoomerang
+ * @property TemplateSmartySettings                   $templateSmarty
  *
  * Class Application
  * @package yii\web

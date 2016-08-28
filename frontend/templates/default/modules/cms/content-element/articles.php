@@ -11,5 +11,13 @@
 <?= $this->render('@template/include/breadcrumbs', [
     'model' => $model
 ])?>
-
-<?= $model->description_full; ?>
+<section class="padding-top-20 padding-bottom-20">
+<!--=== Content Part ===-->
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-12 sx-content">
+                <?= $model->description_full; ?>
+            </div>
+        </div>
+    </div>
+</section>

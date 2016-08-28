@@ -24,7 +24,7 @@ class SmartyThemeAsset extends SmartyAsset
         'css/essentials.css',
         'css/layout.css',
         'css/header-1.css',
-        'css/color_scheme/green.css',
+        //'css/color_scheme/green.css',
     ];
 
     public $js = [
