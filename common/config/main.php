@@ -55,6 +55,10 @@ $config = [
             'class' => 'common\components\TemplateSmartySettings',
         ],
 
+        'cmsAgent' => [
+            'onHitsEnabled'     => true
+        ],
+
     ],
 ];
 

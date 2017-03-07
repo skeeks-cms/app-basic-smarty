@@ -6,8 +6,8 @@
     "type": "project",
     "license": "GPL-3.0+",
     "support": {
-        "issues": "http://cms.skeeks.com",
-        "docs": "http://en.cms.skeeks.com/docs",
+        "issues": "https://cms.skeeks.com",
+        "docs": "https://cms.skeeks.com/docs",
         "source": "https://github.com/skeeks-cms/app-basic-smarty"
     },
     "authors": [
