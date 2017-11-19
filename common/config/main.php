@@ -9,46 +9,18 @@
  * @since 1.0.0
  */
 $config = [
-    'name' => 'SkeekS CMS',
-
-    'components'    =>
-    [
-        'db' => include_once __DIR__ . '/db.php',
-
+    'components' => [
         'urlManager' => [
             'rules' => [
                 [
-                    'class'             => \skeeks\cms\components\urlRules\UrlRuleContentElement::className(),
+                    'class' => \skeeks\cms\components\urlRules\UrlRuleContentElement::className(),
                 ],
 
                 [
-                    'class'             => \skeeks\cms\components\urlRules\UrlRuleTree::className(),
+                    'class' => \skeeks\cms\components\urlRules\UrlRuleTree::className(),
                 ]
             ]
         ],
-
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
-
-        'assetManager' =>
-        [
-            'linkAssets'        => false,
-        ],
-
-        /*'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class'     => 'yii\log\FileTarget',
-                    'logVars'   => [],
-                    'levels' => [
-                        'error',
-                        'warning'
-                    ],
-                ],
-            ],
-        ],*/
 
 
         'templateSmarty' => [
@@ -56,7 +28,7 @@ $config = [
         ],
 
         'cmsAgent' => [
-            'onHitsEnabled'     => true
+            'onHitsEnabled' => true
         ],
 
     ],
