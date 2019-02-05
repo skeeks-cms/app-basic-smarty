@@ -9,9 +9,9 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=app-basic_smarty',
-            'username' => 'app-basic',
-            'password' => 'hDZwcmEYc64vBtEB',
+            'dsn' => 'mysql:host=localhost;dbname=app_basic_smarty',
+            'username' => 'app',
+            'password' => 'aPGb5ByZKPod1WWI',
             'charset' => 'utf8',
             'enableSchemaCache' => true,
             'schemaCacheDuration' => 3600,
