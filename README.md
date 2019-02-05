@@ -3,6 +3,9 @@ Base app smarty SkeekS CMS (Yii2)
 
 [![skeeks!](https://en.cms.skeeks.com/uploads/all/35/fd/33/35fd33aa306823dbaf53a0142d43b3fa.png)](https://cms.skeeks.com)
 
+[![Latest Stable Version](https://img.shields.io/packagist/v/skeeks/app-basic-smarty.svg)](https://packagist.org/skeeks/app-basic-smarty)
+[![Total Downloads](https://img.shields.io/packagist/dt/skeeks/app-basic-smarty.svg)](https://packagist.org/packages/skeeks/app-basic-smarty)
+
 Links
 -------
 * [Web site (SkeekS CMS)](https://cms.skeeks.com)
