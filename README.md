@@ -22,11 +22,24 @@ COMPOSER_HOME=.composer php composer.phar create-project --prefer-dist --stabili
 # Going into the project folder
 cd demo.ru
 
+# Download latest version of composer
+curl -sS https://getcomposer.org/installer | COMPOSER_HOME=.composer php
+
 #Edit the file to access the database, it is located at common/config/db.php
 
+#Update configs
+COMPOSER_HOME=.composer php composer.phar self-update && COMPOSER_HOME=.composer php composer.phar du
+
 #Installation of ready-dump
-php yii dbDumper/mysql/restore
+php yii migrate -t=migration_install -p=backup/migrations
 ```
+
+
+
+Video
+------------
+
+[![Shop on SkeekS CMS (Yii2)](https://www.fresher.ru/manager_content/12-2018/youtube-podvel-tradicionnye-itogi-goda/1.jpg)](https://www.youtube.com/watch?v=S7PFZiSzRuc)
 
 
 ___
