@@ -39,4 +39,3 @@ phpunit.phar
 /console/runtime
 /common/runtime
 /frontend/runtime
-/frontend/web/assets
